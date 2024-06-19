@@ -14,7 +14,7 @@ public:
 
 private:
     void initCfg();
-    void initFileMonitoring(QString filePath);
+    void initFileMonitoring(QString filePath, QString filePath2, int Lagging);
     void initBX_Y1A(QString ScreenIp, int ScreenPort, int ScreenWidth, int ScreenHeight);
 
 signals:

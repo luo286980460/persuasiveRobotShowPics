@@ -2,6 +2,7 @@
 #define FILEMONITORINGWORKER_H
 
 #include <QObject>
+#include <QTimer>
 
 class QFileSystemWatcher;
 class QFileInfo;
@@ -10,7 +11,7 @@ class FileMonitoringWorker : public QObject
 {
     Q_OBJECT
 public:
-    explicit FileMonitoringWorker(QString filePath, QObject *parent = nullptr);
+    explicit FileMonitoringWorker(QString filePath1, QString filePath2, int Lagging, QObject *parent = nullptr);
 
 private:
     void initFileMonitoring();              // 打开文件监控
@@ -18,6 +19,7 @@ private:
     QFileInfo getNewer(QFileInfo* file1, QFileInfo* file2);  // 比较返回相对较新的文件
     void sendPic2Led(QString base64);
     void unPackJson(QJsonObject& json);
+    void initTimer();
 
 
 signals:
@@ -32,8 +34,13 @@ private slots:
 
 private:
     QFileSystemWatcher* m_fileMonitoring;   // 文件监控
-    QString m_filePath;                     // 文件监控路径
-    QString m_filePathData;                 // 文件监控带日期
+    QString m_filePath1;                    // 文件监控路径
+    QString m_filePath2;                    // 文件监控路径
+    QString m_filePathData1;                // 文件监控带日期
+    QString m_filePathData2;                // 文件监控带日期
+    QString m_picLogPath;                   // 照片临时存储路径
+    int m_lagging;                          // 照片处理延迟
+    QTimer* m_timer = nullptr;
 };
 
 #endif // FILEMONITORINGWORKER_H

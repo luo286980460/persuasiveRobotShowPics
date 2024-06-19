@@ -18,6 +18,7 @@ public:
 
 private:
     void init();
+    void updatePaths();
 
 
 signals:

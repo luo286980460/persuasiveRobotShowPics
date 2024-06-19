@@ -22,7 +22,9 @@ void MainClass::initCfg()
     int ScreenWidth;
     int ScreenHeight;
     QString ScreenLogPath;
-    QString FilePath;
+    QString FilePath1;
+    QString FilePath2;
+    int Lagging;
     bool screen = true;
     bool fileMo = true;
     QString cfgPath = QCoreApplication::applicationDirPath() + INI_PATH_NAME;
@@ -47,14 +49,18 @@ void MainClass::initCfg()
     if(screen) initBX_Y1A(ScreenIp, ScreenPort, ScreenWidth, ScreenHeight);
 
     // 文件监控
-    FilePath = settings.value("FileMonitoring/FilePath", -1).toString();
-    if(FilePath == "-1") {showMsg("FileMonitoring/FilePath");fileMo = false;}
-    if(fileMo) initFileMonitoring(FilePath);
+    FilePath1 = settings.value("FileMonitoring/FilePath01", -1).toString();
+    if(FilePath1 == "-1") {showMsg("ini有误，FileMonitoring/FilePath01");fileMo = false;}
+    FilePath2 = settings.value("FileMonitoring/FilePath02", -1).toString();
+    if(FilePath2 == "-1") {showMsg("ini有误，FileMonitoring/FilePath02");fileMo = false;}
+    Lagging = settings.value("FileMonitoring/Lagging", -1).toInt();
+    if(Lagging == -1) {showMsg("ini有误，FileMonitoring/Lagging");fileMo = false;}
+    if(fileMo) initFileMonitoring(FilePath1, FilePath2, Lagging);
 }
 
-void MainClass::initFileMonitoring(QString filePath)
+void MainClass::initFileMonitoring(QString filePath1, QString filePath2, int Lagging)
 {
-    m_fileMonitoring = new FileMonitoring(filePath);
+    m_fileMonitoring = new FileMonitoring(filePath1, filePath2, Lagging);
     connect(m_fileMonitoring, &FileMonitoring::signalShowPic, this, [=](QString picPath){
         if(m_BX_Y1A){
 
@@ -72,5 +78,5 @@ void MainClass::initBX_Y1A(QString ScreenIp, int ScreenPort, int ScreenWidth, in
 
 void MainClass::showMsg(QString msg)
 {
-    //qDebug() << msg;
+    qDebug() << msg;
 }

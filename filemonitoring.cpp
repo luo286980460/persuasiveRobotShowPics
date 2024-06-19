@@ -1,10 +1,10 @@
 #include "filemonitoring.h"
 #include "filemonitoringworker.h"
 
-FileMonitoring::FileMonitoring(QString filePath, QObject *parent)
+FileMonitoring::FileMonitoring(QString filePath1, QString filePath2, int Lagging, QObject *parent)
     : QObject{parent}
 {
-    m_work = new FileMonitoringWorker(filePath);
+    m_work = new FileMonitoringWorker(filePath1, filePath2, Lagging);
     m_work->moveToThread(&m_workerThread);
 
     connect(&m_workerThread, &QThread::finished, m_work, &QObject::deleteLater);    // 退出线程必加

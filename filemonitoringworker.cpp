@@ -2,19 +2,29 @@
 #include <QDir>
 #include <QDebug>
 #include <QDateTime>
+#include <QTime>
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QImage>
 #include <QThread>
+#include <QCoreApplication>
 
 #include "filemonitoringworker.h"
-#define  DATAPATH "/home/ls/22/fileTest/%1"
 
-FileMonitoringWorker::FileMonitoringWorker(QString filePath, QObject *parent)
+FileMonitoringWorker::FileMonitoringWorker(QString filePath1, QString filePath2, int Lagging, QObject *parent)
     : QObject{parent}
-    , m_filePath(filePath)
+    , m_filePath1(filePath1)
+    , m_filePath2(filePath2)
+    , m_lagging(Lagging)
 {
+    qDebug() << "照片处理延时：" << m_lagging << " 毫秒";
+    m_picLogPath = QCoreApplication::applicationDirPath() + "/picLog/";
 
+    QDir dir(m_picLogPath);
+    if(!dir.exists()){
+        dir.mkpath(m_picLogPath);
+        system(QString("chmod -R a+rwx %1").arg(m_picLogPath).toLocal8Bit());
+    }
 }
 
 void FileMonitoringWorker::initFileMonitoring()
@@ -23,17 +33,33 @@ void FileMonitoringWorker::initFileMonitoring()
     m_fileMonitoring = new QFileSystemWatcher(this);
     connect(m_fileMonitoring, SIGNAL(directoryChanged(QString)), this, SLOT(dealPicFiles(QString)));
 
-    QDir dir(m_filePathData);
+    QDir dir(m_filePathData1);
     if(!dir.exists()){
-        dir.mkpath(m_filePathData);
+        dir.mkpath(m_filePathData1);
+        system(QString("chmod -R a+rwx %1").arg(m_filePathData1).toLocal8Bit());
     }
-    m_fileMonitoring->addPath(m_filePathData);
-    //qDebug() << "更新监控路径：" << m_filePath;
+    dir.setPath(m_filePathData2);
+    if(!dir.exists()){
+        dir.mkpath(m_filePathData2);
+        system(QString("chmod -R a+rwx %1").arg(m_filePathData2).toLocal8Bit());
+    }
+
+    m_fileMonitoring->addPath(m_filePathData1);
+    m_fileMonitoring->addPath(m_filePathData2);
+    qDebug() << "更新监控路径：" << m_filePathData1;
+    qDebug() << "更新监控路径：" << m_filePathData2;
 }
 
 void FileMonitoringWorker::updatePath()
 {
-    m_filePathData = QString(m_filePath).arg(QDateTime::currentDateTime().toString("yyyy-MM-dd"));
+    if(m_fileMonitoring){
+        m_fileMonitoring->deleteLater();
+        m_fileMonitoring = nullptr;
+    }
+
+    m_filePathData1 = QString(m_filePath1).arg(QDateTime::currentDateTime().toString("yyyy-MM-dd"));
+    m_filePathData2 = QString(m_filePath2).arg(QDateTime::currentDateTime().toString("yyyy-MM-dd"));
+    initFileMonitoring();
 }
 
 QFileInfo FileMonitoringWorker::getNewer(QFileInfo *file1, QFileInfo *file2)
@@ -74,8 +100,8 @@ void FileMonitoringWorker::sendPic2Led(QString base64)
     QByteArray arr_base64 = base64.toLatin1();
     img.loadFromData(QByteArray::fromBase64(arr_base64.mid(base64.indexOf(",")+1)));
     //img.loadFromData(QByteArray::fromBase64(arr_base64));
-    if(img.save("/home/ls/22/picTest/1.jpeg")){
-        emit signalShowPic("/home/ls/22/picTest/1.jpeg");
+    if(img.save(m_picLogPath + "1.jpeg")){
+        emit signalShowPic(m_picLogPath + "1.jpeg");
     }
 }
 
@@ -84,15 +110,27 @@ void FileMonitoringWorker::unPackJson(QJsonObject &json)
 
 }
 
+void FileMonitoringWorker::initTimer()
+{
+    m_timer = new QTimer;
+    connect(m_timer, &QTimer::timeout, this, [=](){
+        if(QTime::currentTime().toString("ss:mm:ss") == "00:00:00")
+            updatePath();
+    });
+    m_timer->setInterval(1000);
+    m_timer->start();
+}
+
 void FileMonitoringWorker::slotInitWorker()
 {
     updatePath();
-    initFileMonitoring();
+
+    system("chmod -R a+rwx /home");
 }
 
 void FileMonitoringWorker::dealPicFiles(QString path)
 {
-    QThread::msleep(200);
+    QThread::msleep(m_lagging);
     //打开目录
     QDir dir(path);
 
@@ -103,6 +141,8 @@ void FileMonitoringWorker::dealPicFiles(QString path)
     int i = 0;
     //遍历文件信息链表,并进行相关操作
     foreach (QFileInfo info, inforList) {
+
+        qDebug() << "info.filePath():  "<< info.filePath();
         if(!i++){
             pic = info;
         }
@@ -118,7 +158,7 @@ void FileMonitoringWorker::dealPicFiles(QString path)
         jsonDoc = QJsonDocument::fromJson(file.readAll());
         jsonObj = jsonDoc.object();
     }
-    //qDebug() << jsonObj["clwz"].toString();
     sendPic2Led(jsonObj["zpstr1"].toString());
+    //qDebug() << pic.filePath();
     file.remove();
 }
