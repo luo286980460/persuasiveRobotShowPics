@@ -43,7 +43,7 @@ private:
     QString m_ScreenLogPath;
     QTimer* m_sendTimer;
     bool m_canSend = true;
-    int m_screenDelay = 2000;      // 屏幕下次发送的延迟 ms
+    int m_screenDelay = 1000;      // 屏幕下次发送的延迟 ms
 };
 
 #endif // BX_Y1A_H

@@ -214,9 +214,11 @@ bool BX_Y1A::sendTextAndPic(_TEXT_CHAR *content, _TEXT_CHAR *picPath)
     //qDebug() << "add_program_in_playlist: " << res;
 
     // 发送节目单
-    res = send_program(m_ScreenIp.toLocal8Bit().data(), (unsigned short)m_ScreenPort
-                       , m_user, m_pwd, (_TEXT_CHAR*)m_ScreenLogPath.toLocal8Bit().data()
-                       , playlist, 0, nullptr, nullptr);
+    if(m_canSend){
+        res = send_program(m_ScreenIp.toLocal8Bit().data(), (unsigned short)m_ScreenPort
+                           , m_user, m_pwd, (_TEXT_CHAR*)m_ScreenLogPath.toLocal8Bit().data()
+                           , playlist, 0, nullptr, nullptr);
+    }
 
     if(res == 0){
         m_canSend = false;

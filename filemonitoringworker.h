@@ -20,7 +20,6 @@ private:
     void updatePath();                      // 更新文件路径
     QFileInfo getNewer(QFileInfo* file1, QFileInfo* file2);  // 比较返回相对较新的文件
 //    void sendPic2Led(QString base64);
-    void unPackJson(QJsonObject& json);
     void initTimer();
     QString cutPic(QString filePath);
     void deleteBackUp();    // 清理备份文件
@@ -47,11 +46,11 @@ private:
     int m_lagging;                          // 照片处理延迟
     QTimer* m_timer = nullptr;
     int m_imgX                              // 照片截图左上角x坐标
-        = 1200;
+        = 1000;
     int m_imgY                              // 照片截图左上角y坐标
         = 0;
     int m_imgWidth                          // 照片截图宽度
-        = 2000;
+        = 1600;
     int m_imgHeight                         // 照片截图高度
         = 1800;
     int m_backSaveDays = 3;                 // 备份文件保存时间

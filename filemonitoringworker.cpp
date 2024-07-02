@@ -51,11 +51,6 @@ void FileMonitoringWorker::initFileMonitoring()
         dir.mkpath(m_filePathData1);
         system(QString("chmod -R a+rwx %1").arg(m_filePathData1).toLocal8Bit());
     }
-//    dir.setPath(m_filePathData2);
-//    if(!dir.exists()){
-//        dir.mkpath(m_filePathData2);
-//        system(QString("chmod -R a+rwx %1").arg(m_filePathData2).toLocal8Bit());
-//    }
 
     m_fileMonitoring->addPath(m_filePathData1);
     qDebug() << "更新监控路径：" << m_filePathData1;
@@ -126,11 +121,6 @@ QFileInfo FileMonitoringWorker::getNewer(QFileInfo *file1, QFileInfo *file2)
 //    }
 //}
 
-void FileMonitoringWorker::unPackJson(QJsonObject &json)
-{
-
-}
-
 void FileMonitoringWorker::initTimer()
 {
     m_timer = new QTimer;
@@ -148,6 +138,7 @@ void FileMonitoringWorker::initTimer()
 QString FileMonitoringWorker::cutPic(QString filePath)
 {
     if(filePath.isEmpty()) return "";
+
     QString savePath = m_picLogPath + filePath.split("/").last();
     QImage image;
     QImage image1;
@@ -158,14 +149,15 @@ QString FileMonitoringWorker::cutPic(QString filePath)
     image = image.scaledToHeight(image.height()/2);
     image.save(savePath);
 
-    //qDebug() << "------------------------------------------filePath: " << filePath;
-    //qDebug() << "------------------------------------------savePath: " << savePath;
+//    qDebug() << "------------------------------------------filePath: " << filePath;
+//    qDebug() << "------------------------------------------savePath: " << savePath;
     return savePath;
 }
 
 void FileMonitoringWorker::deleteBackUp()
 {
-    QString path = m_picLogPath = QCoreApplication::applicationDirPath() + "/picLog/";
+    QString path = QCoreApplication::applicationDirPath() + "/picLog/";
+    qDebug() << "path:  " << path;
 
     //打开目录
     QDir dir(path);
