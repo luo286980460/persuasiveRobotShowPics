@@ -2,6 +2,7 @@
 #define BX_Y1A_H
 
 #include <QObject>
+#include <QTimer>
 #include "YQNetCom.h"
 
 class BX_Y1A : public QObject
@@ -16,9 +17,13 @@ public:
     // 发送图片
     bool sendPic(_TEXT_CHAR* picPath);
 
+
+    bool sendTextAndPic(_TEXT_CHAR* content, _TEXT_CHAR* picPath);
+
 private:
     void init();
     void updatePaths();
+    void initSendTimer();
 
 
 signals:
@@ -30,10 +35,15 @@ private:
     _TEXT_CHAR* m_pwd = (_TEXT_CHAR*)"guest";
 
     QString m_ScreenIp;
+    QString m_tipText = "请安全驾驶";
     int m_ScreenPort;
     int m_ScreenWidth;
     int m_ScreenHeight;
+    int m_TextAreaHeight = 50;
     QString m_ScreenLogPath;
+    QTimer* m_sendTimer;
+    bool m_canSend = true;
+    int m_screenDelay = 2000;      // 屏幕下次发送的延迟 ms
 };
 
 #endif // BX_Y1A_H

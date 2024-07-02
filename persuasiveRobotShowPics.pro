@@ -1,6 +1,11 @@
-QT = core gui
+QT = core gui network
 
 CONFIG += c++17 cmdline
+
+#msvc {
+#QMAKE_CFLAGS += /utf-8
+#QMAKE_CXXFLAGS += /utf-8
+#}
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -11,7 +16,8 @@ SOURCES += \
         filemonitoring.cpp \
         filemonitoringworker.cpp \
         main.cpp \
-        mainclass.cpp
+        mainclass.cpp \
+        myudpserver.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -23,7 +29,8 @@ HEADERS += \
     bx_y1a.h \
     filemonitoring.h \
     filemonitoringworker.h \
-    mainclass.h
+    mainclass.h \
+    myudpserver.h
 
 unix:!macx: LIBS += -L$$PWD/lib/ -lboost_date_time
 

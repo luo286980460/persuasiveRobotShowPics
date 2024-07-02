@@ -11,6 +11,20 @@
 
 #include "filemonitoringworker.h"
 
+FileMonitoringWorker::FileMonitoringWorker(QString filePath1, int Lagging, QObject *parent)
+    : QObject{parent}
+    , m_filePath1(filePath1)
+    , m_lagging(Lagging)
+{
+    qDebug() << "照片处理延时：" << m_lagging << " 毫秒";
+
+    QDir dir(m_picLogPath);
+    if(!dir.exists()){
+        dir.mkpath(m_picLogPath);
+        system(QString("chmod -R a+rwx %1").arg(m_picLogPath).toLocal8Bit());
+    }
+}
+
 FileMonitoringWorker::FileMonitoringWorker(QString filePath1, QString filePath2, int Lagging, QObject *parent)
     : QObject{parent}
     , m_filePath1(filePath1)
@@ -18,7 +32,6 @@ FileMonitoringWorker::FileMonitoringWorker(QString filePath1, QString filePath2,
     , m_lagging(Lagging)
 {
     qDebug() << "照片处理延时：" << m_lagging << " 毫秒";
-    m_picLogPath = QCoreApplication::applicationDirPath() + "/picLog/";
 
     QDir dir(m_picLogPath);
     if(!dir.exists()){
@@ -29,7 +42,7 @@ FileMonitoringWorker::FileMonitoringWorker(QString filePath1, QString filePath2,
 
 void FileMonitoringWorker::initFileMonitoring()
 {
-    // 获取屏幕配置文件
+    // 初始化文件监控
     m_fileMonitoring = new QFileSystemWatcher(this);
     connect(m_fileMonitoring, SIGNAL(directoryChanged(QString)), this, SLOT(dealPicFiles(QString)));
 
@@ -38,16 +51,14 @@ void FileMonitoringWorker::initFileMonitoring()
         dir.mkpath(m_filePathData1);
         system(QString("chmod -R a+rwx %1").arg(m_filePathData1).toLocal8Bit());
     }
-    dir.setPath(m_filePathData2);
-    if(!dir.exists()){
-        dir.mkpath(m_filePathData2);
-        system(QString("chmod -R a+rwx %1").arg(m_filePathData2).toLocal8Bit());
-    }
+//    dir.setPath(m_filePathData2);
+//    if(!dir.exists()){
+//        dir.mkpath(m_filePathData2);
+//        system(QString("chmod -R a+rwx %1").arg(m_filePathData2).toLocal8Bit());
+//    }
 
     m_fileMonitoring->addPath(m_filePathData1);
-    m_fileMonitoring->addPath(m_filePathData2);
     qDebug() << "更新监控路径：" << m_filePathData1;
-    qDebug() << "更新监控路径：" << m_filePathData2;
 }
 
 void FileMonitoringWorker::updatePath()
@@ -57,13 +68,23 @@ void FileMonitoringWorker::updatePath()
         m_fileMonitoring = nullptr;
     }
 
-    m_filePathData1 = QString(m_filePath1).arg(QDateTime::currentDateTime().toString("yyyy-MM-dd"));
-    m_filePathData2 = QString(m_filePath2).arg(QDateTime::currentDateTime().toString("yyyy-MM-dd"));
+    m_filePathData1 = m_filePath1;
+    m_picLogPath = QCoreApplication::applicationDirPath() + "/picLog/" + QDateTime::currentDateTime().toString("yyyyMMdd/");
+    QDir dir(m_picLogPath);
+    if(!dir.exists()){
+        dir.mkpath(m_picLogPath);
+    }
+
+    //qDebug() << "m_picLogPath:  " << m_picLogPath;
+    m_filePathData1.replace("%2", QDateTime::currentDateTime().toString("yyyy"));
+    m_filePathData1.replace("%3", QDateTime::currentDateTime().toString("MM"));
+    m_filePathData1.replace("%4", QDateTime::currentDateTime().toString("dd"));
     initFileMonitoring();
 }
 
 QFileInfo FileMonitoringWorker::getNewer(QFileInfo *file1, QFileInfo *file2)
 {
+    return *file1;
     QFile fJson1 = QFile(file1->filePath());
     QFile fJson2 = QFile(file2->filePath());
 
@@ -94,16 +115,16 @@ QFileInfo FileMonitoringWorker::getNewer(QFileInfo *file1, QFileInfo *file2)
     }
 }
 
-void FileMonitoringWorker::sendPic2Led(QString base64)
-{
-    QImage img;
-    QByteArray arr_base64 = base64.toLatin1();
-    img.loadFromData(QByteArray::fromBase64(arr_base64.mid(base64.indexOf(",")+1)));
-    //img.loadFromData(QByteArray::fromBase64(arr_base64));
-    if(img.save(m_picLogPath + "1.jpeg")){
-        emit signalShowPic(m_picLogPath + "1.jpeg");
-    }
-}
+//void FileMonitoringWorker::sendPic2Led(QString base64)
+//{
+//    QImage img;
+//    QByteArray arr_base64 = base64.toLatin1();
+//    img.loadFromData(QByteArray::fromBase64(arr_base64.mid(base64.indexOf(",")+1)));
+//    //img.loadFromData(QByteArray::fromBase64(arr_base64));
+//    if(img.save(m_picLogPath + "1.jpeg")){
+//        emit signalShowPic(m_picLogPath + "1.jpeg");
+//    }
+//}
 
 void FileMonitoringWorker::unPackJson(QJsonObject &json)
 {
@@ -114,11 +135,55 @@ void FileMonitoringWorker::initTimer()
 {
     m_timer = new QTimer;
     connect(m_timer, &QTimer::timeout, this, [=](){
-        if(QTime::currentTime().toString("ss:mm:ss") == "00:00:00")
+        if(QTime::currentTime().toString("ss:mm:ss") == "00:00:00"){
             updatePath();
+            deleteBackUp();
+        }
+
     });
     m_timer->setInterval(1000);
     m_timer->start();
+}
+
+QString FileMonitoringWorker::cutPic(QString filePath)
+{
+    if(filePath.isEmpty()) return "";
+    QString savePath = m_picLogPath + filePath.split("/").last();
+    QImage image;
+    QImage image1;
+    image.load(filePath);
+
+    //image1 = image.scaledToHeight(310);
+    image = image.copy(m_imgX, m_imgY, m_imgWidth, m_imgHeight);
+    image = image.scaledToHeight(image.height()/2);
+    image.save(savePath);
+
+    //qDebug() << "------------------------------------------filePath: " << filePath;
+    //qDebug() << "------------------------------------------savePath: " << savePath;
+    return savePath;
+}
+
+void FileMonitoringWorker::deleteBackUp()
+{
+    QString path = m_picLogPath = QCoreApplication::applicationDirPath() + "/picLog/";
+
+    //打开目录
+    QDir dir(path);
+
+    //提取文件信息链表
+    QFileInfoList inforList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
+
+    //遍历文件信息链表,并进行相关操作
+    foreach (QFileInfo info, inforList) {
+        QDateTime dirTime = QDateTime::fromString(info.fileName(), "yyyyMMdd");
+        QDateTime curTime = QDateTime::currentDateTime();
+        if(dirTime.daysTo(curTime) > m_backSaveDays){
+            QDir _dir;
+            _dir.setPath(info.filePath());
+            _dir.removeRecursively();
+        }
+    }
+
 }
 
 void FileMonitoringWorker::slotInitWorker()
@@ -126,13 +191,13 @@ void FileMonitoringWorker::slotInitWorker()
     updatePath();
 
     system("chmod -R a+rwx /home");
+    deleteBackUp();
 }
 
-void FileMonitoringWorker::dealPicFiles(QString path)
+void FileMonitoringWorker::dealPicFiles(QString fileName)
 {
-    QThread::msleep(m_lagging);
     //打开目录
-    QDir dir(path);
+    QDir dir(fileName);
 
     //提取文件信息链表
     QFileInfoList inforList = dir.entryInfoList(QDir::Files);
@@ -141,8 +206,14 @@ void FileMonitoringWorker::dealPicFiles(QString path)
     int i = 0;
     //遍历文件信息链表,并进行相关操作
     foreach (QFileInfo info, inforList) {
-
-        qDebug() << "info.filePath():  "<< info.filePath();
+        //qDebug() << "info.fileName():  "<< info.fileName();
+        QString filePath = info.filePath();
+        if(filePath.contains("_scale")){
+            QFile _file(filePath);
+            _file.remove();
+            continue;
+        }
+        QThread::msleep(m_lagging);
         if(!i++){
             pic = info;
         }
@@ -151,14 +222,14 @@ void FileMonitoringWorker::dealPicFiles(QString path)
         }
     }
 
-    QFile file = QFile(pic.filePath());
-    QJsonDocument jsonDoc;
-    QJsonObject jsonObj;
-    if(file.open(QIODevice::ReadOnly)){
-        jsonDoc = QJsonDocument::fromJson(file.readAll());
-        jsonObj = jsonDoc.object();
-    }
-    sendPic2Led(jsonObj["zpstr1"].toString());
-    //qDebug() << pic.filePath();
-    file.remove();
+    QString oldName = pic.filePath();
+    QString newName;
+
+    /* 图片截取并保存 */
+    newName = cutPic(oldName);
+    emit signalShowPic(newName);
+
+    /* 删除原图 */
+    if(!oldName.isEmpty()) QFile::remove(oldName);
+
 }
