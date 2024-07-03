@@ -39,6 +39,11 @@ void MainClass::initCfg()
     QString FilePath1;
     int Lagging;
 
+    int X;
+    int Y;
+    int Width;
+    int Height;
+
     int Port;
 
     bool screen = true;
@@ -50,7 +55,8 @@ void MainClass::initCfg()
     if(Port == -1) {
         showMsg("ini有误，UdpServer/Port");
         udpServer = false;
-    }else if(udpServer){
+    }
+    if(udpServer){
         initMyUdpServer(Port);
         if(m_MyUdpServer) m_MyUdpServer->m_iniJson["UdpServer/Port"] = Port;
     }
@@ -90,14 +96,14 @@ void MainClass::initCfg()
     if(screen) initBX_Y1A(ScreenIp, ScreenPort, ScreenWidth, ScreenHeight);
 
     // 文件监控
-    FilePath0 = m_settings->value("FileMonitoring/FilePath00", -1).toString();
+    FilePath0 = m_settings->value("FileMonitoring/FilePath00", "-1").toString();
     if(FilePath0 == "-1") {
         showMsg("ini有误，FileMonitoring/FilePath00");
         fileMo = false;
     }else{
         if(m_MyUdpServer) m_MyUdpServer->m_iniJson["FileMonitoring/FilePath00"] = FilePath0;
     }
-    FilePath1 = m_settings->value("FileMonitoring/FilePath01", -1).toString();
+    FilePath1 = m_settings->value("FileMonitoring/FilePath01", "-1").toString();
     if(FilePath1 == "-1") {
         showMsg("ini有误，FileMonitoring/FilePath01");
         fileMo = false;
@@ -111,12 +117,32 @@ void MainClass::initCfg()
     }else{
         if(m_MyUdpServer) m_MyUdpServer->m_iniJson["FileMonitoring/Lagging"] = Lagging;
     }
-    if(fileMo) initFileMonitoring(FilePath0, FilePath1, Lagging);
+
+    X = m_settings->value("Image/X", -1).toInt();
+    Y = m_settings->value("Image/Y", -1).toInt();
+    Width = m_settings->value("Image/Width", -1).toInt();
+    Height = m_settings->value("Image/Height", -1).toInt();
+    if(X == -1 || Y == -1 || Width == -1 || Height == -1){
+        showMsg("ini有误，Image/（X/Y/Width/Height）");
+        X = 1000;
+        Y = 0;
+        Width = 1600;
+        Height = 1800;
+    }else{
+        if(m_MyUdpServer) {
+            m_MyUdpServer->m_iniJson["Image/X"] = X;
+            m_MyUdpServer->m_iniJson["Image/Y"] = Y;
+            m_MyUdpServer->m_iniJson["Image/Width"] = Width;
+            m_MyUdpServer->m_iniJson["Image/Height"] = Height;
+        }
+    }
+
+    if(fileMo) initFileMonitoring(FilePath0, FilePath1, Lagging, X, Y, Width, Height);
 }
 
-void MainClass::initFileMonitoring(QString filePath1, QString filePath2, int Lagging)
+void MainClass::initFileMonitoring(QString filePath1, QString filePath2, int Lagging, int X, int Y, int Width, int Height)
 {
-    m_fileMonitoring = new FileMonitoring(filePath1, Lagging);
+    m_fileMonitoring = new FileMonitoring(filePath1, filePath2, Lagging, X, Y, Width, Height);
     connect(m_fileMonitoring, &FileMonitoring::signalShowPic, this, [=](QString picPath){
         if(m_BX_Y1A){
 

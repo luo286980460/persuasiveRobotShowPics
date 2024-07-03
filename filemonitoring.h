@@ -10,8 +10,8 @@ class FileMonitoring : public QObject
 {
     Q_OBJECT
 public:
-    explicit FileMonitoring(QString filePath1, int Lagging, QObject *parent = nullptr);
-    explicit FileMonitoring(QString filePath1, QString filePath2, int Lagging, QObject *parent = nullptr);
+    explicit FileMonitoring(QString filePath1, QString filePath2, int Lagging,
+                            int X, int Y, int Width, int Height, QObject *parent = nullptr);
     ~FileMonitoring();
 
     void start();

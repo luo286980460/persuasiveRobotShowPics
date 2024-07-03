@@ -11,25 +11,16 @@
 
 #include "filemonitoringworker.h"
 
-FileMonitoringWorker::FileMonitoringWorker(QString filePath1, int Lagging, QObject *parent)
-    : QObject{parent}
-    , m_filePath1(filePath1)
-    , m_lagging(Lagging)
-{
-    qDebug() << "照片处理延时：" << m_lagging << " 毫秒";
-
-    QDir dir(m_picLogPath);
-    if(!dir.exists()){
-        dir.mkpath(m_picLogPath);
-        system(QString("chmod -R a+rwx %1").arg(m_picLogPath).toLocal8Bit());
-    }
-}
-
-FileMonitoringWorker::FileMonitoringWorker(QString filePath1, QString filePath2, int Lagging, QObject *parent)
+FileMonitoringWorker::FileMonitoringWorker(QString filePath1, QString filePath2, int Lagging,
+                                           int X, int Y, int Width, int Height, QObject *parent)
     : QObject{parent}
     , m_filePath1(filePath1)
     , m_filePath2(filePath2)
     , m_lagging(Lagging)
+    , m_imgX(X)
+    , m_imgY(Y)
+    , m_imgWidth(Width)
+    , m_imgHeight(Height)
 {
     qDebug() << "照片处理延时：" << m_lagging << " 毫秒";
 
@@ -71,9 +62,11 @@ void FileMonitoringWorker::updatePath()
     }
 
     //qDebug() << "m_picLogPath:  " << m_picLogPath;
-    m_filePathData1.replace("%2", QDateTime::currentDateTime().toString("yyyy"));
-    m_filePathData1.replace("%3", QDateTime::currentDateTime().toString("MM"));
-    m_filePathData1.replace("%4", QDateTime::currentDateTime().toString("dd"));
+    QDateTime currTime = QDateTime::currentDateTime();
+    m_filePathData1.replace("%1", currTime.toString("yyyyMMdd"));
+    m_filePathData1.replace("%2", currTime.toString("yyyy"));
+    m_filePathData1.replace("%3", currTime.toString("MM"));
+    m_filePathData1.replace("%4", currTime.toString("dd"));
     initFileMonitoring();
 }
 

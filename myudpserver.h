@@ -17,7 +17,6 @@ public:
 
 private:
     void initIniJson();
-    void modifySettings(QJsonObject& jsonObj);              //修改配置信息
     void setIni(QJsonObject& json);
 
 signals:

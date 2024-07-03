@@ -33,39 +33,10 @@ void MyUdpServer::initIniJson()
     m_iniJson.insert("FileMonitoring/FilePath01", "");
     m_iniJson.insert("FileMonitoring/FilePath02", "");
     m_iniJson.insert("UdpServer/Port", "");
-}
-
-void MyUdpServer::modifySettings(QJsonObject &jsonObj)
-{
-
-    // 修改显示屏IP
-    if(jsonObj.contains("Screen/ScreenIp") && jsonObj.value("Screen/ScreenIp").isString()){
-
-    }
-    // 修改显示屏端口
-    if(jsonObj.contains("Screen/ScreenPort") && jsonObj.value("Screen/ScreenPort").isDouble()){
-
-    }
-    // 修改显示屏宽度
-    if(jsonObj.contains("Screen/ScreenWidth") && jsonObj.value("Screen/ScreenWidth").isDouble()){
-
-    }
-    // 修改显示屏高度
-    if(jsonObj.contains("Screen/ScreenHeight") && jsonObj.value("Screen/ScreenHeight").isDouble()){
-
-    }
-    // 修改需要监控的文件夹1
-    if(jsonObj.contains("FileMonitoring/FilePath01") && jsonObj.value("FileMonitoring/FilePath01").isString()){
-
-    }
-    // 修改需要监控的文件夹2
-    if(jsonObj.contains("FileMonitoring/FilePath02") && jsonObj.value("FileMonitoring/FilePath02").isString()){
-
-    }
-    // 修改处理照片的延时
-    if(jsonObj.contains("FileMonitoring/Lagging") && jsonObj.value("FileMonitoring/Lagging").isDouble()){
-
-    }
+    m_iniJson.insert("Image/X", "");
+    m_iniJson.insert("Image/Y", "");
+    m_iniJson.insert("Image/Width", "");
+    m_iniJson.insert("Image/Height", "");
 }
 
 void MyUdpServer::setIni(QJsonObject& json)
@@ -86,7 +57,19 @@ void MyUdpServer::setIni(QJsonObject& json)
         emit signalSetIni("FileMonitoring/FilePath01", json.value("FileMonitoring/FilePath01").toString());
     }
     if(json.contains("FileMonitoring/Lagging") && json.value("FileMonitoring/Lagging").isDouble()){
-        emit signalSetIni("FileMonitoring/v", json.value("FileMonitoring/Lagging").toInt());
+        emit signalSetIni("FileMonitoring/Lagging", json.value("FileMonitoring/Lagging").toInt());
+    }
+    if(json.contains("Image/X") && json.value("Image/X").isDouble()){
+        emit signalSetIni("Image/X", json.value("Image/X").toInt());
+    }
+    if(json.contains("Image/Y") && json.value("Image/Y").isDouble()){
+        emit signalSetIni("Image/Y", json.value("Image/Y").toInt());
+    }
+    if(json.contains("Image/Width") && json.value("Image/Width").isDouble()){
+        emit signalSetIni("Image/Width", json.value("Image/Width").toInt());
+    }
+    if(json.contains("Image/Height") && json.value("Image/Height").isDouble()){
+        emit signalSetIni("Image/Height", json.value("Image/Height").toInt());
     }
     emit signalUpdateIni();
 }

@@ -17,7 +17,7 @@ public:
 private:
     void openCfg();
     void initCfg();
-    void initFileMonitoring(QString filePath, QString filePath2, int Lagging);
+    void initFileMonitoring(QString filePath, QString filePath2, int Lagging, int X, int Y, int Width, int Height);
     void initBX_Y1A(QString ScreenIp, int ScreenPort, int ScreenWidth, int ScreenHeight);
     void initMyUdpServer(int port);
     void setIni(QString key, QString value);

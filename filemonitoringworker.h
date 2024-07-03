@@ -12,8 +12,8 @@ class FileMonitoringWorker : public QObject
 {
     Q_OBJECT
 public:
-    explicit FileMonitoringWorker(QString filePath1, int Lagging, QObject *parent = nullptr);
-    explicit FileMonitoringWorker(QString filePath1, QString filePath2, int Lagging, QObject *parent = nullptr);
+    explicit FileMonitoringWorker(QString filePath1, QString filePath2, int Lagging,
+                                  int X, int Y, int Width, int Height, QObject *parent = nullptr);
 
 private:
     void initFileMonitoring();              // 打开文件监控
@@ -46,13 +46,13 @@ private:
     int m_lagging;                          // 照片处理延迟
     QTimer* m_timer = nullptr;
     int m_imgX                              // 照片截图左上角x坐标
-        = 1000;
+        ;
     int m_imgY                              // 照片截图左上角y坐标
-        = 0;
+        ;
     int m_imgWidth                          // 照片截图宽度
-        = 1600;
+        ;
     int m_imgHeight                         // 照片截图高度
-        = 1800;
+        ;
     int m_backSaveDays = 3;                 // 备份文件保存时间
 };
 #endif // FILEMONITORINGWORKER_H

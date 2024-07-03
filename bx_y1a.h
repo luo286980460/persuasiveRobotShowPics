@@ -39,7 +39,7 @@ private:
     int m_ScreenPort;
     int m_ScreenWidth;
     int m_ScreenHeight;
-    int m_TextAreaHeight = 50;
+    int m_TextAreaHeight = 60;
     QString m_ScreenLogPath;
     QTimer* m_sendTimer;
     bool m_canSend = true;

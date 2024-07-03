@@ -15,7 +15,7 @@ BX_Y1A::BX_Y1A(QString ScreenIp, int ScreenPort, int ScreenWidth, int ScreenHeig
     init();
     //sendPic((_TEXT_CHAR*)((QCoreApplication::applicationDirPath() + "/pics/1.jpg").toLocal8Bit().data()));
 
-    sendTextAndPic((_TEXT_CHAR*)m_tipText.toLocal8Bit().data(), (_TEXT_CHAR*)((QCoreApplication::applicationDirPath() + "/pics/1.jpg").toLocal8Bit().data()));
+    sendTextAndPic((_TEXT_CHAR*)m_tipText.toLocal8Bit().data(), (_TEXT_CHAR*)((QCoreApplication::applicationDirPath() + "/1.jpg").toLocal8Bit().data()));
 //    QThread::msleep(3000)    sendPic((_TEXT_CHAR*)"/home/ls/22/pics/2.png");
 //    QThread::msleep(3000);
 //    sendText((_TEXT_CHAR*)"雨天路滑 减速慢");
