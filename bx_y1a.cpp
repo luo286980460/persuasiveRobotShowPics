@@ -15,7 +15,8 @@ BX_Y1A::BX_Y1A(QString ScreenIp, int ScreenPort, int ScreenWidth, int ScreenHeig
     init();
     //sendPic((_TEXT_CHAR*)((QCoreApplication::applicationDirPath() + "/pics/1.jpg").toLocal8Bit().data()));
 
-    sendTextAndPic((_TEXT_CHAR*)m_tipText.toLocal8Bit().data(), (_TEXT_CHAR*)((QCoreApplication::applicationDirPath() + "/1.jpg").toLocal8Bit().data()));
+    //QThread::msleep(3000);
+    //sendTextAndPic((_TEXT_CHAR*)m_tipText.toLocal8Bit().data(), (_TEXT_CHAR*)(("/home/ls/1.jpg")));
 //    QThread::msleep(3000)    sendPic((_TEXT_CHAR*)"/home/ls/22/pics/2.png");
 //    QThread::msleep(3000);
 //    sendText((_TEXT_CHAR*)"雨天路滑 减速慢");
@@ -45,6 +46,19 @@ void BX_Y1A::initSendTimer()
     });
     m_sendTimer->setInterval(m_screenDelay);
 
+
+    m_toDefProTimer.setInterval(10000);
+    connect(&m_toDefProTimer, &QTimer::timeout, this, [=]{
+        showDefaultProgram();
+        m_toDefProTimer.stop();
+    });
+    m_toDefProTimer.start();
+
+}
+
+void BX_Y1A::showDefaultProgram()
+{
+    sendTextAndPic((_TEXT_CHAR*)m_tipText.toLocal8Bit().data(), (_TEXT_CHAR*)((QCoreApplication::applicationDirPath() + "/1.jpg").toLocal8Bit().data()));
 }
 
 bool BX_Y1A::sendText(_TEXT_CHAR* content)

@@ -14,6 +14,8 @@ MainClass::MainClass(QObject *parent)
 {
     openCfg();
     initCfg();
+
+    //if(m_BX_Y1A) m_BX_Y1A->showDefaultProgram();
 }
 
 void MainClass::openCfg()
@@ -147,11 +149,11 @@ void MainClass::initFileMonitoring(QString filePath1, QString filePath2, int Lag
         if(m_BX_Y1A){
 
             if(m_BX_Y1A && !picPath.isEmpty()){
-                if(picPath.contains("未")){
-                    m_BX_Y1A->sendTextAndPic((_TEXT_CHAR*)"小呆逼一个", (_TEXT_CHAR*)(picPath.toLocal8Bit().data()));
-                }else{
+//                if(picPath.contains("未")){
+//                    m_BX_Y1A->sendTextAndPic((_TEXT_CHAR*)"小呆逼一个", (_TEXT_CHAR*)(picPath.toLocal8Bit().data()));
+//                }else{
                     m_BX_Y1A->sendTextAndPic((_TEXT_CHAR*)"请安全驾驶", (_TEXT_CHAR*)(picPath.toLocal8Bit().data()));
-                }
+//                }
             }
         }
     });

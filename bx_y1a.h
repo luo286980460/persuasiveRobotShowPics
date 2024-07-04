@@ -19,6 +19,7 @@ public:
 
 
     bool sendTextAndPic(_TEXT_CHAR* content, _TEXT_CHAR* picPath);
+    void showDefaultProgram();
 
 private:
     void init();
@@ -44,6 +45,7 @@ private:
     QTimer* m_sendTimer;
     bool m_canSend = true;
     int m_screenDelay = 1000;      // 屏幕下次发送的延迟 ms
+    QTimer m_toDefProTimer;
 };
 
 #endif // BX_Y1A_H

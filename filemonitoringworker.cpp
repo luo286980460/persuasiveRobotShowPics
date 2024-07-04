@@ -72,6 +72,7 @@ void FileMonitoringWorker::updatePath()
 
 QFileInfo FileMonitoringWorker::getNewer(QFileInfo *file1, QFileInfo *file2)
 {
+
     return *file1;
     QFile fJson1 = QFile(file1->filePath());
     QFile fJson2 = QFile(file2->filePath());
@@ -134,12 +135,12 @@ QString FileMonitoringWorker::cutPic(QString filePath)
 
     QString savePath = m_picLogPath + filePath.split("/").last();
     QImage image;
-    QImage image1;
     image.load(filePath);
 
     //image1 = image.scaledToHeight(310);
     image = image.copy(m_imgX, m_imgY, m_imgWidth, m_imgHeight);
-    image = image.scaledToHeight(image.height()/2);
+    if(!image.isNull())
+        image = image.scaledToHeight(image.height()/2);
     image.save(savePath);
 
 //    qDebug() << "------------------------------------------filePath: " << filePath;
@@ -193,14 +194,15 @@ void FileMonitoringWorker::dealPicFiles(QString fileName)
     foreach (QFileInfo info, inforList) {
         //qDebug() << "info.fileName():  "<< info.fileName();
         QString filePath = info.filePath();
-        if(filePath.contains("_scale")){
+        if(filePath.contains("_scale") || filePath.contains("_510_")){
             QFile _file(filePath);
             _file.remove();
             continue;
         }
         QThread::msleep(m_lagging);
-        if(!i++){
+        if(!i){
             pic = info;
+            ++i;
         }
         else{
             pic = getNewer(&pic, &info);
