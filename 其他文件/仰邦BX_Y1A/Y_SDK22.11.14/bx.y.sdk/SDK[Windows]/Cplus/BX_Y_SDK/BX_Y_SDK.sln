@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Y_SDK", "Y_SDK\Y_SDK.vcxproj", "{2E2B7C4C-F164-4511-AD73-8DF997BB5C2C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BX_Y_SDK", "BX_Y_SDK\BX_Y_SDK.vcxproj", "{A3BC7676-0944-47DA-9AD0-F49924F9126F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E2B7C4C-F164-4511-AD73-8DF997BB5C2C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2E2B7C4C-F164-4511-AD73-8DF997BB5C2C}.Debug|Win32.Build.0 = Debug|Win32
+		{2E2B7C4C-F164-4511-AD73-8DF997BB5C2C}.Release|Win32.ActiveCfg = Release|Win32
+		{2E2B7C4C-F164-4511-AD73-8DF997BB5C2C}.Release|Win32.Build.0 = Release|Win32
+		{A3BC7676-0944-47DA-9AD0-F49924F9126F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A3BC7676-0944-47DA-9AD0-F49924F9126F}.Debug|Win32.Build.0 = Debug|Win32
+		{A3BC7676-0944-47DA-9AD0-F49924F9126F}.Release|Win32.ActiveCfg = Release|Win32
+		{A3BC7676-0944-47DA-9AD0-F49924F9126F}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

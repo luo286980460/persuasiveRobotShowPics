@@ -1,0 +1,16 @@
+﻿  base64.cpp
+D:\OneDrive\桌面\Y_SDK22.11.14\bx.y.sdk\SDK[Windows]\Cplus\BX_Y_SDK\BX_Y_SDK\base64.cpp(69,61): warning C4267: “=”: 从“size_t”转换到“unsigned char”，可能丢失数据
+D:\OneDrive\桌面\Y_SDK22.11.14\bx.y.sdk\SDK[Windows]\Cplus\BX_Y_SDK\BX_Y_SDK\base64.cpp(86,59): warning C4267: “=”: 从“size_t”转换到“unsigned char”，可能丢失数据
+  LedYsdk.cpp
+D:\OneDrive\桌面\Y_SDK22.11.14\bx.y.sdk\SDK[Windows]\Cplus\BX_Y_SDK\BX_Y_SDK\LedYsdk.cpp(604,14): warning C4996: 'wcscat': This function or variable may be unsafe. Consider using wcscat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\OneDrive\桌面\Y_SDK22.11.14\bx.y.sdk\SDK[Windows]\Cplus\BX_Y_SDK\BX_Y_SDK\LedYsdk.cpp(649,14): warning C4996: 'wcscat': This function or variable may be unsafe. Consider using wcscat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\OneDrive\桌面\Y_SDK22.11.14\bx.y.sdk\SDK[Windows]\Cplus\BX_Y_SDK\BX_Y_SDK\LedYsdk.cpp(688,17): warning C4996: 'wcscat': This function or variable may be unsafe. Consider using wcscat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\OneDrive\桌面\Y_SDK22.11.14\bx.y.sdk\SDK[Windows]\Cplus\BX_Y_SDK\BX_Y_SDK\LedYsdk.cpp(763,22): warning C4996: 'wcscat': This function or variable may be unsafe. Consider using wcscat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\OneDrive\桌面\Y_SDK22.11.14\bx.y.sdk\SDK[Windows]\Cplus\BX_Y_SDK\BX_Y_SDK\LedYsdk.cpp(941,14): warning C4996: 'wcscat': This function or variable may be unsafe. Consider using wcscat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  正在生成代码...
+base64.obj : error LNK2019: 无法解析的外部符号 __imp___invalid_parameter，函数 "void * __cdecl std::_Allocate_manually_vector_aligned<struct std::_Default_allocate_traits>(unsigned int)" (??$_Allocate_manually_vector_aligned@U_Default_allocate_traits@std@@@std@@YAPAXI@Z) 中引用了该符号
+LedYsdk.obj : error LNK2001: 无法解析的外部符号 __imp___invalid_parameter
+base64.obj : error LNK2019: 无法解析的外部符号 __imp___CrtDbgReport，函数 "void * __cdecl std::_Allocate_manually_vector_aligned<struct std::_Default_allocate_traits>(unsigned int)" (??$_Allocate_manually_vector_aligned@U_Default_allocate_traits@std@@@std@@YAPAXI@Z) 中引用了该符号
+LedYsdk.obj : error LNK2001: 无法解析的外部符号 __imp___CrtDbgReport
+LedYsdk.obj : error LNK2019: 无法解析的外部符号 __imp___CrtDbgReportW，函数 "public: __thiscall ATL::CAtlComModule::CAtlComModule(void)" (??0CAtlComModule@ATL@@QAE@XZ) 中引用了该符号
+D:\OneDrive\桌面\Y_SDK22.11.14\bx.y.sdk\SDK[Windows]\Cplus\BX_Y_SDK\Debug\BX_Y_SDK.exe : fatal error LNK1120: 3 个无法解析的外部命令

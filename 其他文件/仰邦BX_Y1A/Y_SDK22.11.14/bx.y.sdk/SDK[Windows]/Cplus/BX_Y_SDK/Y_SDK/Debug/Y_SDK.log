@@ -1,0 +1,15 @@
+﻿  stdafx.cpp
+  base64.cpp
+D:\OneDrive\桌面\Y_SDK22.11.14\bx.y.sdk\SDK[Windows]\Cplus\BX_Y_SDK\Y_SDK\base64.cpp(70,61): warning C4267: “=”: 从“size_t”转换到“unsigned char”，可能丢失数据
+D:\OneDrive\桌面\Y_SDK22.11.14\bx.y.sdk\SDK[Windows]\Cplus\BX_Y_SDK\Y_SDK\base64.cpp(87,59): warning C4267: “=”: 从“size_t”转换到“unsigned char”，可能丢失数据
+  Send_DynamicArea.cpp
+D:\OneDrive\桌面\Y_SDK22.11.14\bx.y.sdk\SDK[Windows]\Cplus\BX_Y_SDK\Y_SDK\YQNetCom.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\OneDrive\桌面\Y_SDK22.11.14\bx.y.sdk\SDK[Windows]\Cplus\BX_Y_SDK\Y_SDK\YQNetCom.h(652,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  Send_Program.cpp
+D:\OneDrive\桌面\Y_SDK22.11.14\bx.y.sdk\SDK[Windows]\Cplus\BX_Y_SDK\Y_SDK\YQNetCom.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\OneDrive\桌面\Y_SDK22.11.14\bx.y.sdk\SDK[Windows]\Cplus\BX_Y_SDK\Y_SDK\YQNetCom.h(652,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  Y_SDK.cpp
+D:\OneDrive\桌面\Y_SDK22.11.14\bx.y.sdk\SDK[Windows]\Cplus\BX_Y_SDK\Y_SDK\YQNetCom.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\OneDrive\桌面\Y_SDK22.11.14\bx.y.sdk\SDK[Windows]\Cplus\BX_Y_SDK\Y_SDK\YQNetCom.h(652,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  正在生成代码...
+LINK : fatal error LNK1207: “D:\OneDrive\桌面\Y_SDK22.11.14\bx.y.sdk\SDK[Windows]\Cplus\BX_Y_SDK\Debug\Y_SDK.pdb”中的 PDB 格式不兼容；请删除并重新生成

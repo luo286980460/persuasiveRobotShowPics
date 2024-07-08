@@ -4,6 +4,31 @@
 #include <QObject>
 #include <QSettings>
 
+/*
+
+    编译环境安装以下：
+        qtbase5-dev
+        qtchooser
+        qt5-qmake
+        qtbase5-dev-tools
+        g++
+        make
+
+    换源
+        清华源
+        deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal main restricted
+        deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-updates main restricted
+        deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal universe
+        deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-updates universe
+        deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal multiverse
+        deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-updates multiverse
+        deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-backports main restricted universe multiverse
+        deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-security main restricted
+        deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-security universe
+        deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ focal-security multiverse
+
+*/
+
 class FileMonitoring;
 class BX_Y1A;
 class MyUdpServer;

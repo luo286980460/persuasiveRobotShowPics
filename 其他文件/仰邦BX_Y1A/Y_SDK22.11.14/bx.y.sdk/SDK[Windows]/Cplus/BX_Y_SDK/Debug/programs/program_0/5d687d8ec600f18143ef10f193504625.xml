@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<program name="program_1" bgColor="0xff000000">
+	<richtextpanel x="0" y="0" w="64" h="32" zOrder="0" stuntType="0" transparency="100" alignment_H="0">
+		<textUnit content="&lt;span foreground=&apos;blue&apos; font=&apos;10&apos;&gt;test&lt;/span&gt;&lt;span foreground=&apos;red&apos; font=&apos;10&apos;&gt;测试&lt;/span&gt;" stuntSpeed="16" stayTime="10" bgColor="0xff000000" bgImagePath=""/>
+	</richtextpanel>
+</program>

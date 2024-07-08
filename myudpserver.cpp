@@ -6,6 +6,7 @@ MyUdpServer::MyUdpServer(quint16 port, QObject *parent)
     , m_port(port)
 {
     InitSocket();
+    initIniJson();
 }
 
 void MyUdpServer::InitSocket()

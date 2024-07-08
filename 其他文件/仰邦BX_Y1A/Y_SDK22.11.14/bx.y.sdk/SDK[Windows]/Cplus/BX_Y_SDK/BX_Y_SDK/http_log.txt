@@ -1,0 +1,130 @@
+2021-05-25 09:04:33:V20.12.29  >> begin
+2021-05-25 09:04:33:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"GetVerificationCode","tracecode":"100041"}}}
+
+2021-05-25 09:04:33:{"remotefunction": {"name": "getverificationcode", "output": {"verificationcode": "20210525090433457351"}}}
+2021-05-25 09:04:33:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogin","tracecode":"118467","input":{"password":"17160986422339f2a2f2e5b862d8f247a8be50d1","username":"guest","verificationcode":"20210525090433457351"}}}}
+
+2021-05-25 09:04:33:{"remotefunction": {"name": "userlogin", "output": {"sessionID": "ebe5777135d535de2d89a4e53dd51a31"}}}
+2021-05-25 09:04:33:http://192.168.89.166:80/;stok=ebe5777135d535de2d89a4e53dd51a31/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"SystemClockCorrect","tracecode":"106334","input":{"datetime":"2021-05-25 01:04:33","isutc":"yes"}}}}
+
+2021-05-25 09:04:33:{"remotefunction": {"name": "systemclockcorrect"}}
+2021-05-25 09:04:33:http://192.168.89.166:80/;stok=ebe5777135d535de2d89a4e53dd51a31/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogout","tracecode":"126500"}}}
+
+2021-05-25 09:04:33:{"remotefunction": {"name": "userlogout"}}
+2021-05-25 09:04:33:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"GetVerificationCode","tracecode":"119169"}}}
+
+2021-05-25 09:04:33:{"remotefunction": {"name": "getverificationcode", "output": {"verificationcode": "20210525090433300803"}}}
+2021-05-25 09:04:33:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogin","tracecode":"115724","input":{"password":"ed6977e6d66f9fc90fc4efc7cdee42ca1e6411a0","username":"guest","verificationcode":"20210525090433300803"}}}}
+
+2021-05-25 09:04:33:{"remotefunction": {"name": "userlogin", "output": {"sessionID": "2f912d52da825cc0b0e309281b0f5b41"}}}
+2021-05-25 09:04:33:http://192.168.89.166:80/;stok=2f912d52da825cc0b0e309281b0f5b41/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UpdateDynamic","tracecode":"111478","input":{"dynamics":[{"height":"32","id":"0","relativeProgram":"","runMode":"0","transparency":"100","updateFrequency":"","width":"32","xCoord":"0","yCoord":"0","unit":[{"alignment-H":"0","alignment-V":"0","bgColor":"0xff000000","content":"5YqoMTQ35oCB5Yy6","fontAttributes":"normal","fontColor":"0xffff0000","fontName":"SimSun","fontSize":"12","fontSizeType":"point","gifFlag":"0","order":"0","stayTime":"0","stuntSpeed":"10","stuntType":"52","type":"1"}                        ]}                ],"cover":"1","immediatelyPlay":""}}}}
+
+2021-05-25 09:04:33:{"remotefunction": {"name": "updatedynamic"}}
+2021-05-25 09:04:33:http://192.168.89.166:80/;stok=2f912d52da825cc0b0e309281b0f5b41/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogout","tracecode":"129358"}}}
+
+2021-05-25 09:04:33:{"remotefunction": {"name": "userlogout"}}
+2021-05-25 09:04:33:V20.12.29  >> end
+2021-05-25 09:07:04:V20.12.29  >> begin
+2021-05-25 09:07:05:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"GetVerificationCode","tracecode":"100041"}}}
+
+2021-05-25 09:07:05:{"remotefunction": {"name": "getverificationcode", "output": {"verificationcode": "20210525090705206100"}}}
+2021-05-25 09:07:05:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogin","tracecode":"118467","input":{"password":"9c2b137c29ecd2d033c131afa4e1a854331e59b2","username":"guest","verificationcode":"20210525090705206100"}}}}
+
+2021-05-25 09:07:05:{"remotefunction": {"name": "userlogin", "output": {"sessionID": "c85022c304caa1be15c442909b87991d"}}}
+2021-05-25 09:07:05:http://192.168.89.166:80/;stok=c85022c304caa1be15c442909b87991d/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"SystemClockCorrect","tracecode":"106334","input":{"datetime":"2021-05-25 01:07:05","isutc":"yes"}}}}
+
+2021-05-25 09:07:05:{"remotefunction": {"name": "systemclockcorrect"}}
+2021-05-25 09:07:05:http://192.168.89.166:80/;stok=c85022c304caa1be15c442909b87991d/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogout","tracecode":"126500"}}}
+
+2021-05-25 09:07:05:{"remotefunction": {"name": "userlogout"}}
+2021-05-25 09:07:05:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"GetVerificationCode","tracecode":"119169"}}}
+
+2021-05-25 09:07:05:{"remotefunction": {"name": "getverificationcode", "output": {"verificationcode": "20210525090705674104"}}}
+2021-05-25 09:07:05:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogin","tracecode":"115724","input":{"password":"8957f50345c2e5e0fcc22b2fbec6772bcfd5997d","username":"guest","verificationcode":"20210525090705674104"}}}}
+
+2021-05-25 09:07:05:{"remotefunction": {"name": "userlogin", "output": {"sessionID": "17c5be00b592dae23284d46b257b0dbb"}}}
+2021-05-25 09:07:05:http://192.168.89.166:80/;stok=17c5be00b592dae23284d46b257b0dbb/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UpdateDynamic","tracecode":"111478","input":{"dynamics":[{"height":"32","id":"0","relativeProgram":"","runMode":"0","transparency":"100","updateFrequency":"","width":"32","xCoord":"0","yCoord":"0","unit":[{"alignment-H":"0","alignment-V":"0","bgColor":"0xff000000","content":"5YqoMTQ35oCB5Yy6","fontAttributes":"normal","fontColor":"0xffff0000","fontName":"SimSun","fontSize":"12","fontSizeType":"point","gifFlag":"0","order":"0","stayTime":"0","stuntSpeed":"10","stuntType":"52","type":"1"}                        ]}                ],"cover":"1","immediatelyPlay":""}}}}
+
+2021-05-25 09:07:05:{"remotefunction": {"name": "updatedynamic"}}
+2021-05-25 09:07:05:http://192.168.89.166:80/;stok=17c5be00b592dae23284d46b257b0dbb/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogout","tracecode":"129358"}}}
+
+2021-05-25 09:07:05:{"remotefunction": {"name": "userlogout"}}
+2021-05-25 09:07:05:V20.12.29  >> end
+2021-05-25 09:08:08:V20.12.29  >> begin
+2021-05-25 09:08:08:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"GetVerificationCode","tracecode":"100041"}}}
+
+2021-05-25 09:08:08:{"remotefunction": {"name": "getverificationcode", "output": {"verificationcode": "20210525090808214343"}}}
+2021-05-25 09:08:08:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogin","tracecode":"118467","input":{"password":"de1772fa32d905e41a834944dc8c4113949ffcbc","username":"guest","verificationcode":"20210525090808214343"}}}}
+
+2021-05-25 09:08:08:{"remotefunction": {"name": "userlogin", "output": {"sessionID": "915e69cb22cb4e175280fedac3a202c3"}}}
+2021-05-25 09:08:08:http://192.168.89.166:80/;stok=915e69cb22cb4e175280fedac3a202c3/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"SystemClockCorrect","tracecode":"106334","input":{"datetime":"2021-05-25 01:08:08","isutc":"yes"}}}}
+
+2021-05-25 09:08:08:{"remotefunction": {"name": "systemclockcorrect"}}
+2021-05-25 09:08:08:http://192.168.89.166:80/;stok=915e69cb22cb4e175280fedac3a202c3/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogout","tracecode":"126500"}}}
+
+2021-05-25 09:08:08:{"remotefunction": {"name": "userlogout"}}
+2021-05-25 09:08:08:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"GetVerificationCode","tracecode":"119169"}}}
+
+2021-05-25 09:08:08:{"remotefunction": {"name": "getverificationcode", "output": {"verificationcode": "20210525090808578461"}}}
+2021-05-25 09:08:08:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogin","tracecode":"115724","input":{"password":"a30d97bd894a5f77a62425c410943281a0691ffc","username":"guest","verificationcode":"20210525090808578461"}}}}
+
+2021-05-25 09:08:08:{"remotefunction": {"name": "userlogin", "output": {"sessionID": "7703c0557df861f1f31170d505dfbe91"}}}
+2021-05-25 09:08:09:http://192.168.89.166:80/;stok=7703c0557df861f1f31170d505dfbe91/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UpdateDynamic","tracecode":"111478","input":{"dynamics":[{"height":"32","id":"0","relativeProgram":"","runMode":"0","transparency":"100","updateFrequency":"","width":"32","xCoord":"0","yCoord":"0","unit":[{"alignment-H":"0","alignment-V":"0","bgColor":"0xff000000","content":"5YqoMTQ35oCB5Yy6","fontAttributes":"normal","fontColor":"0xffff0000","fontName":"SimSun","fontSize":"12","fontSizeType":"point","gifFlag":"0","order":"0","stayTime":"0","stuntSpeed":"10","stuntType":"52","type":"1"}                        ]}                ],"cover":"1","immediatelyPlay":""}}}}
+
+2021-05-25 09:08:09:{"remotefunction": {"name": "updatedynamic"}}
+2021-05-25 09:08:09:http://192.168.89.166:80/;stok=7703c0557df861f1f31170d505dfbe91/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogout","tracecode":"129358"}}}
+
+2021-05-25 09:08:09:{"remotefunction": {"name": "userlogout"}}
+2021-05-25 09:08:09:V20.12.29  >> end
+2021-05-25 09:08:19:V20.12.29  >> begin
+2021-05-25 09:08:19:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"GetVerificationCode","tracecode":"100041"}}}
+
+2021-05-25 09:08:19:{"remotefunction": {"name": "getverificationcode", "output": {"verificationcode": "20210525090819939860"}}}
+2021-05-25 09:08:19:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogin","tracecode":"118467","input":{"password":"8e24904704d1ee3529ee01a0c69e942ed7dc22ec","username":"guest","verificationcode":"20210525090819939860"}}}}
+
+2021-05-25 09:08:19:{"remotefunction": {"name": "userlogin", "output": {"sessionID": "faafc465b7a997bbb2d3823527675e17"}}}
+2021-05-25 09:08:19:http://192.168.89.166:80/;stok=faafc465b7a997bbb2d3823527675e17/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"SystemClockCorrect","tracecode":"106334","input":{"datetime":"2021-05-25 01:08:19","isutc":"yes"}}}}
+
+2021-05-25 09:08:19:{"remotefunction": {"name": "systemclockcorrect"}}
+2021-05-25 09:08:19:http://192.168.89.166:80/;stok=faafc465b7a997bbb2d3823527675e17/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogout","tracecode":"126500"}}}
+
+2021-05-25 09:08:19:{"remotefunction": {"name": "userlogout"}}
+2021-05-25 09:08:19:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"GetVerificationCode","tracecode":"119169"}}}
+
+2021-05-25 09:08:19:{"remotefunction": {"name": "getverificationcode", "output": {"verificationcode": "20210525090819404699"}}}
+2021-05-25 09:08:19:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogin","tracecode":"115724","input":{"password":"52f394e5915aa5159c8b8a91e0efae8f628b3802","username":"guest","verificationcode":"20210525090819404699"}}}}
+
+2021-05-25 09:08:19:{"remotefunction": {"name": "userlogin", "output": {"sessionID": "30a34c065980fe33b0d86dd02815dea9"}}}
+2021-05-25 09:08:20:http://192.168.89.166:80/;stok=30a34c065980fe33b0d86dd02815dea9/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UpdateDynamic","tracecode":"111478","input":{"dynamics":[{"height":"32","id":"0","relativeProgram":"","runMode":"0","transparency":"100","updateFrequency":"","width":"32","xCoord":"0","yCoord":"0","unit":[{"alignment-H":"0","alignment-V":"0","bgColor":"0xff000000","content":"5YqoMTQ35oCB5Yy6","fontAttributes":"normal","fontColor":"0xffff0000","fontName":"SimSun","fontSize":"12","fontSizeType":"point","gifFlag":"0","order":"0","stayTime":"0","stuntSpeed":"10","stuntType":"52","type":"1"}                        ]}                ],"cover":"1","immediatelyPlay":""}}}}
+
+2021-05-25 09:08:20:{"remotefunction": {"name": "updatedynamic"}}
+2021-05-25 09:08:20:http://192.168.89.166:80/;stok=30a34c065980fe33b0d86dd02815dea9/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogout","tracecode":"129358"}}}
+
+2021-05-25 09:08:20:{"remotefunction": {"name": "userlogout"}}
+2021-05-25 09:08:20:V20.12.29  >> end
+2021-05-25 09:08:35:V20.12.29  >> begin
+2021-05-25 09:08:35:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"GetVerificationCode","tracecode":"100041"}}}
+
+2021-05-25 09:08:35:{"remotefunction": {"name": "getverificationcode", "output": {"verificationcode": "20210525090835296834"}}}
+2021-05-25 09:08:35:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogin","tracecode":"118467","input":{"password":"872f1c126eeb94e8a8d830cf607cfc190809849f","username":"guest","verificationcode":"20210525090835296834"}}}}
+
+2021-05-25 09:08:35:{"remotefunction": {"name": "userlogin", "output": {"sessionID": "d6b71bd5925ac1f9617586a1b74c05d0"}}}
+2021-05-25 09:08:35:http://192.168.89.166:80/;stok=d6b71bd5925ac1f9617586a1b74c05d0/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"SystemClockCorrect","tracecode":"106334","input":{"datetime":"2021-05-25 01:08:35","isutc":"yes"}}}}
+
+2021-05-25 09:08:35:{"remotefunction": {"name": "systemclockcorrect"}}
+2021-05-25 09:08:35:http://192.168.89.166:80/;stok=d6b71bd5925ac1f9617586a1b74c05d0/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogout","tracecode":"126500"}}}
+
+2021-05-25 09:08:35:{"remotefunction": {"name": "userlogout"}}
+2021-05-25 09:08:35:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"GetVerificationCode","tracecode":"119169"}}}
+
+2021-05-25 09:08:35:{"remotefunction": {"name": "getverificationcode", "output": {"verificationcode": "20210525090835712952"}}}
+2021-05-25 09:08:35:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogin","tracecode":"115724","input":{"password":"33724595af41f8dbdff1705865f9f8b38044f8cd","username":"guest","verificationcode":"20210525090835712952"}}}}
+
+2021-05-25 09:08:35:{"remotefunction": {"name": "userlogin", "output": {"sessionID": "b099653248957ba6661e314a8f31294d"}}}
+2021-05-25 09:08:35:http://192.168.89.166:80/;stok=b099653248957ba6661e314a8f31294d/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UpdateDynamic","tracecode":"111478","input":{"dynamics":[{"height":"32","id":"0","relativeProgram":"","runMode":"0","transparency":"100","updateFrequency":"","width":"32","xCoord":"0","yCoord":"0","unit":[{"alignment-H":"0","alignment-V":"0","bgColor":"0xff000000","content":"5YqoMTQ35oCB5Yy6","fontAttributes":"normal","fontColor":"0xffff0000","fontName":"SimSun","fontSize":"12","fontSizeType":"point","gifFlag":"0","order":"0","stayTime":"0","stuntSpeed":"10","stuntType":"52","type":"1"}                        ]}                ],"cover":"1","immediatelyPlay":""}}}}
+
+2021-05-25 09:08:35:{"remotefunction": {"name": "updatedynamic"}}
+2021-05-25 09:08:35:http://192.168.89.166:80/;stok=b099653248957ba6661e314a8f31294d/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogout","tracecode":"129358"}}}
+
+2021-05-25 09:08:35:{"remotefunction": {"name": "userlogout"}}
+2021-05-25 09:08:35:V20.12.29  >> end

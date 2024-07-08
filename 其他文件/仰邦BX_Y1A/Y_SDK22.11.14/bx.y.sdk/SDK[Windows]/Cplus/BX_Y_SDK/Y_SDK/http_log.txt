@@ -1,0 +1,247 @@
+2021-04-16 16:06:15:V20.12.29  >> begin
+2021-04-16 16:06:15:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"GetVerificationCode","tracecode":"100041"}}}
+
+2021-04-16 16:06:15:{"remotefunction": {"name": "getverificationcode", "output": {"verificationcode": "20210416160616413695"}}}
+2021-04-16 16:06:15:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogin","tracecode":"118467","input":{"password":"5ea9824df67e0079970c864fc401f70a40eadcfc","username":"guest","verificationcode":"20210416160616413695"}}}}
+
+2021-04-16 16:06:15:{"remotefunction": {"name": "userlogin", "output": {"sessionID": "a38a57ad2e330d3d37a5d34e7581c894"}}}
+2021-04-16 16:06:15:http://192.168.89.166:80/;stok=a38a57ad2e330d3d37a5d34e7581c894/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UpdateDynamic","tracecode":"106334","input":{"dynamics":[{"height":"32","id":"0","relativeProgram":"","runMode":"0","transparency":"100","updateFrequency":"","width":"64","xCoord":"0","yCoord":"0","unit":[{"alignment-H":"0","alignment-V":"0","bgColor":"0xff000000","content":"5pi+56S65pWw5o2u","fontAttributes":"normal","fontColor":"0xffff0000","fontName":"SimSun","fontSize":"12","fontSizeType":"point","gifFlag":"0","order":"0","stayTime":"0","stuntSpeed":"10","stuntType":"52","type":"1"}                        ]}                ],"cover":"0","immediatelyPlay":""}}}}
+
+2021-04-16 16:06:15:{"remotefunction": {"name": "updatedynamic"}}
+2021-04-16 16:06:15:http://192.168.89.166:80/;stok=a38a57ad2e330d3d37a5d34e7581c894/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogout","tracecode":"126500"}}}
+
+2021-04-16 16:06:15:{"remotefunction": {"name": "userlogout"}}
+2021-04-16 16:06:15:V20.12.29  >> end
+2021-04-16 16:06:35:V20.12.29  >> begin
+2021-04-16 16:06:35:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"GetVerificationCode","tracecode":"100041"}}}
+
+2021-04-16 16:06:35:{"remotefunction": {"name": "getverificationcode", "output": {"verificationcode": "20210416160635490179"}}}
+2021-04-16 16:06:35:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogin","tracecode":"118467","input":{"password":"65796c94b2263c2d3a44be449a5f6ebf47a3c467","username":"guest","verificationcode":"20210416160635490179"}}}}
+
+2021-04-16 16:06:35:{"remotefunction": {"name": "userlogin", "output": {"sessionID": "bca43abb7e9654f353f851d7cfaa5fd3"}}}
+2021-04-16 16:06:35:http://192.168.89.166:80/;stok=bca43abb7e9654f353f851d7cfaa5fd3/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UpdateDynamic","tracecode":"106334","input":{"dynamics":[{"height":"32","id":"0","relativeProgram":"","runMode":"0","transparency":"100","updateFrequency":"","width":"64","xCoord":"0","yCoord":"0","unit":[{"alignment-H":"0","alignment-V":"0","bgColor":"0xff000000","content":"5pi+56S65pWw5o2u","fontAttributes":"normal","fontColor":"0xffff0000","fontName":"SimSun","fontSize":"12","fontSizeType":"point","gifFlag":"0","order":"0","stayTime":"0","stuntSpeed":"10","stuntType":"52","type":"1"}                        ]}                ],"cover":"0","immediatelyPlay":""}}}}
+
+2021-04-16 16:06:35:{"remotefunction": {"name": "updatedynamic"}}
+2021-04-16 16:06:35:http://192.168.89.166:80/;stok=bca43abb7e9654f353f851d7cfaa5fd3/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogout","tracecode":"126500"}}}
+
+2021-04-16 16:06:35:{"remotefunction": {"name": "userlogout"}}
+2021-04-16 16:06:35:V20.12.29  >> end
+2021-04-16 16:08:03:V20.12.29  >> begin
+2021-04-16 16:08:03:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"GetVerificationCode","tracecode":"100041"}}}
+
+2021-04-16 16:08:03:{"remotefunction": {"name": "getverificationcode", "output": {"verificationcode": "20210416160803434075"}}}
+2021-04-16 16:08:03:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogin","tracecode":"118467","input":{"password":"24a1c0e0c5fd07b982b34ad8adc722a5b39008ed","username":"guest","verificationcode":"20210416160803434075"}}}}
+
+2021-04-16 16:08:03:{"remotefunction": {"name": "userlogin", "output": {"sessionID": "185ccd000c3ce667d05ee39d9a5f8d98"}}}
+2021-04-16 16:08:03:http://192.168.89.166:80/;stok=185ccd000c3ce667d05ee39d9a5f8d98/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UpdateDynamic","tracecode":"106334","input":{"dynamics":[{"height":"32","id":"0","relativeProgram":"","runMode":"0","transparency":"100","updateFrequency":"","width":"64","xCoord":"0","yCoord":"0","unit":[{"alignment-H":"0","alignment-V":"0","bgColor":"0xff000000","content":"5pi+56S65pWw5o2u","fontAttributes":"normal","fontColor":"0xffff0000","fontName":"SimSun","fontSize":"12","fontSizeType":"point","gifFlag":"0","order":"0","stayTime":"0","stuntSpeed":"10","stuntType":"52","type":"1"}                        ]}                ],"cover":"0","immediatelyPlay":""}}}}
+
+2021-04-16 16:08:03:{"remotefunction": {"name": "updatedynamic"}}
+2021-04-16 16:08:03:http://192.168.89.166:80/;stok=185ccd000c3ce667d05ee39d9a5f8d98/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogout","tracecode":"126500"}}}
+
+2021-04-16 16:08:03:{"remotefunction": {"name": "userlogout"}}
+2021-04-16 16:08:03:V20.12.29  >> end
+2021-05-25 09:09:18:V20.12.29  >> begin
+2021-05-25 09:09:25:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"GetVerificationCode","tracecode":"100041"}}}
+
+2021-05-25 09:09:25:{"remotefunction": {"name": "getverificationcode", "output": {"verificationcode": "20210525090925552226"}}}
+2021-05-25 09:09:25:http://192.168.89.166:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogin","tracecode":"118467","input":{"password":"523557ef94ce2e9e1e61f3205bdbe92bc87b89ea","username":"guest","verificationcode":"20210525090925552226"}}}}
+
+2021-05-25 09:09:25:{"remotefunction": {"name": "userlogin", "output": {"sessionID": "99122071505c2e776dfd0c7e1093ea9b"}}}
+2021-05-25 09:09:25:http://192.168.89.166:80/;stok=99122071505c2e776dfd0c7e1093ea9b/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UpdateDynamic","tracecode":"106334","input":{"dynamics":[{"height":"32","id":"0","relativeProgram":"","runMode":"0","transparency":"100","updateFrequency":"","width":"32","xCoord":"0","yCoord":"0","unit":[{"alignment-H":"0","alignment-V":"0","bgColor":"0xff000000","content":"5pi+56S65pWw5o2u","fontAttributes":"normal","fontColor":"0xffff0000","fontName":"SimSun","fontSize":"12","fontSizeType":"point","gifFlag":"0","order":"0","stayTime":"0","stuntSpeed":"10","stuntType":"52","type":"1"}                        ]},{"height":"32","id":"1","relativeProgram":"","runMode":"0","transparency":"100","updateFrequency":"","width":"32","xCoord":"32","yCoord":"0","unit":[{"alignment-H":"0","alignment-V":"0","bgColor":"0xff000000","content":"5pi+56S65pWw5o2u","fontAttributes":"normal","fontColor":"0xffff0000","fontName":"SimSun","fontSize":"12","fontSizeType":"point","gifFlag":"0","order":"0","stayTime":"0","stuntSpeed":"10","stuntType":"53","type":"1"}                        ]}                ],"cover":"0","immediatelyPlay":""}}}}
+
+2021-05-25 09:09:25:{"remotefunction": {"name": "updatedynamic"}}
+2021-05-25 09:09:25:http://192.168.89.166:80/;stok=99122071505c2e776dfd0c7e1093ea9b/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogout","tracecode":"126500"}}}
+
+2021-05-25 09:09:25:{"remotefunction": {"name": "userlogout"}}
+2021-07-30 11:14:06:V20.12.29  >> begin
+2021-07-30 11:14:06:http://192.168.89.183:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"GetVerificationCode","tracecode":"100041"}}}
+
+2021-07-30 11:14:06:{"remotefunction": {"name": "getverificationcode", "output": {"verificationcode": "20210730111406525439"}}}
+2021-07-30 11:14:06:http://192.168.89.183:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogin","tracecode":"118467","input":{"password":"4b0924f36e8ff5ca3cf7d3b9120b042ab2eb609a","username":"guest","verificationcode":"20210730111406525439"}}}}
+
+2021-07-30 11:14:06:{"remotefunction": {"name": "userlogin", "output": {"sessionID": "259a8c3d5b81e31466dc7de9d8dcbfc8"}}}
+2021-07-30 11:14:06:http://192.168.89.183:80/;stok=259a8c3d5b81e31466dc7de9d8dcbfc8/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"GetProperty","tracecode":"106334","input":{"controllertype":"","height":"","screendata":"","storagemedia":"","width":""}}}}
+
+2021-07-30 11:14:06:{"remotefunction": {"name": "getproperty", "output": {"controllertype": "11608", "height": "32", "screendata": "1", "storagemedia": "emmc", "width": "64"}}}
+2021-07-30 11:14:06:http://192.168.89.183:80/;stok=259a8c3d5b81e31466dc7de9d8dcbfc8/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"QueryDisk","tracecode":"126500","input":{"storagemedia":"emmc"}}}}
+
+2021-07-30 11:14:06:{"remotefunction": {"name": "querydisk", "output": {"filesystem": "ext4", "freesize": "3190362112", "totalsize": "3348062208", "usedpercent": "3.70%", "usedsize": "123686912"}}}
+2021-07-30 11:14:06:SendProgramProc  >> Make begin
+2021-07-30 11:14:06:SendProgramProc  >> Make ok
+2021-07-30 11:14:06:http://192.168.89.183:80/;stok=259a8c3d5b81e31466dc7de9d8dcbfc8/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"FindFile","tracecode":"119169","input":{"items":[{"filename":"programs\/ff9481018355af6510123cfcffb40556.xml"},{"filename":"lists\/b8bd69e5dfa30b1f44c2bd95ce002e44.xml"}                ]}}}}
+
+2021-07-30 11:14:06:{"remotefunction": {"name": "findfile", "output": {"items": [{"filename": "programs/ff9481018355af6510123cfcffb40556.xml", "mtime": "", "size": "0"}, {"filename": "lists/b8bd69e5dfa30b1f44c2bd95ce002e44.xml", "mtime": "", "size": "0"}]}}}
+2021-07-30 11:14:06:http://192.168.89.183:80/;stok=259a8c3d5b81e31466dc7de9d8dcbfc8/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"EnableUploadDownload","tracecode":"115724","input":{"flag":"1","type":"upload"}}}}
+
+2021-07-30 11:14:06:{"remotefunction": {"name": "enableuploaddownload"}}
+2021-07-30 11:14:06:http://192.168.89.183:80/;stok=259a8c3d5b81e31466dc7de9d8dcbfc8/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"FindFile","tracecode":"111478","input":{"items":[{"filename":"programs\/ff9481018355af6510123cfcffb40556.xml"}                ]}}}}
+
+2021-07-30 11:14:06:{"remotefunction": {"name": "findfile", "output": {"items": [{"filename": "programs/ff9481018355af6510123cfcffb40556.xml", "mtime": "", "size": "0"}]}}}
+2021-07-30 11:14:06:http://192.168.89.183:80/;stok=259a8c3d5b81e31466dc7de9d8dcbfc8/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"FindTempFile","tracecode":"129358","input":{"filename":"ff9481018355af6510123cfcffb40556"}}}}
+
+2021-07-30 11:14:06:{"remotefunction": {"name": "findtempfile", "output": {"filename": "ff9481018355af6510123cfcffb40556", "size": "0"}}}
+2021-07-30 11:14:06:ff9481018355af6510123cfcffb40556
+2021-07-30 11:14:06:X-Content-Range:bytes 0-433/434
+2021-07-30 11:14:06:Upload OK
+2021-07-30 11:14:06:434 out
+2021-07-30 11:14:06:http://192.168.89.183:80/;stok=259a8c3d5b81e31466dc7de9d8dcbfc8/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"MoveFile","tracecode":"126962","input":{"dst":"programs\/ff9481018355af6510123cfcffb40556.xml","src":"ff9481018355af6510123cfcffb40556"}}}}
+
+2021-07-30 11:14:06:{"remotefunction": {"name": "movefile"}}
+2021-07-30 11:14:06:http://192.168.89.183:80/;stok=259a8c3d5b81e31466dc7de9d8dcbfc8/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"FindFile","tracecode":"124464","input":{"items":[{"filename":"lists\/b8bd69e5dfa30b1f44c2bd95ce002e44.xml"}                ]}}}}
+
+2021-07-30 11:14:06:{"remotefunction": {"name": "findfile", "output": {"items": [{"filename": "lists/b8bd69e5dfa30b1f44c2bd95ce002e44.xml", "mtime": "", "size": "0"}]}}}
+2021-07-30 11:14:06:http://192.168.89.183:80/;stok=259a8c3d5b81e31466dc7de9d8dcbfc8/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"FindTempFile","tracecode":"105705","input":{"filename":"b8bd69e5dfa30b1f44c2bd95ce002e44"}}}}
+
+2021-07-30 11:14:06:{"remotefunction": {"name": "findtempfile", "output": {"filename": "b8bd69e5dfa30b1f44c2bd95ce002e44", "size": "0"}}}
+2021-07-30 11:14:06:b8bd69e5dfa30b1f44c2bd95ce002e44
+2021-07-30 11:14:06:X-Content-Range:bytes 0-320/321
+2021-07-30 11:14:06:Upload OK
+2021-07-30 11:14:06:321 out
+2021-07-30 11:14:07:http://192.168.89.183:80/;stok=259a8c3d5b81e31466dc7de9d8dcbfc8/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"MoveFile","tracecode":"128145","input":{"dst":"lists\/b8bd69e5dfa30b1f44c2bd95ce002e44.xml","src":"b8bd69e5dfa30b1f44c2bd95ce002e44"}}}}
+
+2021-07-30 11:14:07:{"remotefunction": {"name": "movefile"}}
+2021-07-30 11:14:07:http://192.168.89.183:80/;stok=259a8c3d5b81e31466dc7de9d8dcbfc8/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"EnableUploadDownload","tracecode":"123281","input":{"flag":"0","type":"upload"}}}}
+
+2021-07-30 11:14:07:{"remotefunction": {"name": "enableuploaddownload"}}
+2021-07-30 11:14:07:http://192.168.89.183:80/;stok=259a8c3d5b81e31466dc7de9d8dcbfc8/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"StopPlay","tracecode":"116827","input":{"save":"no","type":"program"}}}}
+
+2021-07-30 11:14:07:{"remotefunction": {"name": "stopplay", "output": {"type": "program"}}}
+2021-07-30 11:14:07:http://192.168.89.183:80/;stok=259a8c3d5b81e31466dc7de9d8dcbfc8/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"LockProgram","tracecode":"109961","input":{"programlockedname":"","programlockedstatus":"0"}}}}
+
+2021-07-30 11:14:07:{"remotefunction": {"name": "lockprogram", "output": {"type": "false"}}}
+2021-07-30 11:14:07:http://192.168.89.183:80/;stok=259a8c3d5b81e31466dc7de9d8dcbfc8/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"Play","tracecode":"100491","input":{"playlist":"lists\/b8bd69e5dfa30b1f44c2bd95ce002e44.xml","save":"yes","type":"program"}}}}
+
+2021-07-30 11:14:07:{"remotefunction": {"name": "play", "output": {"message": "lists/b8bd69e5dfa30b1f44c2bd95ce002e44.xml", "type": "program"}}}
+2021-07-30 11:14:07:http://192.168.89.183:80/;stok=259a8c3d5b81e31466dc7de9d8dcbfc8/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogout","tracecode":"102995"}}}
+
+2021-07-30 11:14:07:{"remotefunction": {"name": "userlogout"}}
+2021-07-30 11:14:07:V20.12.29  >> end
+2021-07-30 11:14:14:V20.12.29  >> begin
+2021-07-30 11:14:28:http://192.168.89.183:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"GetVerificationCode","tracecode":"100041"}}}
+
+2021-07-30 11:14:28:{"remotefunction": {"name": "getverificationcode", "output": {"verificationcode": "20210730111429761050"}}}
+2021-07-30 11:14:28:http://192.168.89.183:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogin","tracecode":"118467","input":{"password":"c3364f6eb203f0126fb7c3248f28664e115c0e4d","username":"guest","verificationcode":"20210730111429761050"}}}}
+
+2021-07-30 11:14:28:{"remotefunction": {"name": "userlogin", "output": {"sessionID": "d238a16381659958b6a45ea9027a66b4"}}}
+2021-07-30 11:14:29:http://192.168.89.183:80/;stok=d238a16381659958b6a45ea9027a66b4/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"GetProperty","tracecode":"106334","input":{"controllertype":"","height":"","screendata":"","storagemedia":"","width":""}}}}
+
+2021-07-30 11:14:29:{"remotefunction": {"name": "getproperty", "output": {"controllertype": "11608", "height": "32", "screendata": "1", "storagemedia": "emmc", "width": "64"}}}
+2021-07-30 11:14:29:http://192.168.89.183:80/;stok=d238a16381659958b6a45ea9027a66b4/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"QueryDisk","tracecode":"126500","input":{"storagemedia":"emmc"}}}}
+
+2021-07-30 11:14:29:{"remotefunction": {"name": "querydisk", "output": {"filesystem": "ext4", "freesize": "3190341632", "totalsize": "3348062208", "usedpercent": "3.70%", "usedsize": "123707392"}}}
+2021-07-30 11:14:29:SendProgramProc  >> Make begin
+2021-07-30 11:14:29:SendProgramProc  >> Make ok
+2021-07-30 11:14:29:http://192.168.89.183:80/;stok=d238a16381659958b6a45ea9027a66b4/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"FindFile","tracecode":"119169","input":{"items":[{"filename":"programs\/ff9481018355af6510123cfcffb40556.xml"},{"filename":"lists\/b8bd69e5dfa30b1f44c2bd95ce002e44.xml"}                ]}}}}
+
+2021-07-30 11:14:29:{"remotefunction": {"name": "findfile", "output": {"items": [{"filename": "programs/ff9481018355af6510123cfcffb40556.xml", "mtime": "2021-07-30 11:14:07", "size": "434"}, {"filename": "lists/b8bd69e5dfa30b1f44c2bd95ce002e44.xml", "mtime": "2021-07-30 11:14:07", "size": "321"}]}}}
+2021-07-30 11:14:29:http://192.168.89.183:80/;stok=d238a16381659958b6a45ea9027a66b4/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"EnableUploadDownload","tracecode":"115724","input":{"flag":"1","type":"upload"}}}}
+
+2021-07-30 11:14:29:{"remotefunction": {"name": "enableuploaddownload"}}
+2021-07-30 11:14:29:http://192.168.89.183:80/;stok=d238a16381659958b6a45ea9027a66b4/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"FindFile","tracecode":"111478","input":{"items":[{"filename":"programs\/ff9481018355af6510123cfcffb40556.xml"}                ]}}}}
+
+2021-07-30 11:14:29:{"remotefunction": {"name": "findfile", "output": {"items": [{"filename": "programs/ff9481018355af6510123cfcffb40556.xml", "mtime": "2021-07-30 11:14:07", "size": "434"}]}}}
+2021-07-30 11:14:29:http://192.168.89.183:80/;stok=d238a16381659958b6a45ea9027a66b4/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"FindFile","tracecode":"129358","input":{"items":[{"filename":"lists\/b8bd69e5dfa30b1f44c2bd95ce002e44.xml"}                ]}}}}
+
+2021-07-30 11:14:29:{"remotefunction": {"name": "findfile", "output": {"items": [{"filename": "lists/b8bd69e5dfa30b1f44c2bd95ce002e44.xml", "mtime": "2021-07-30 11:14:07", "size": "321"}]}}}
+2021-07-30 11:14:29:http://192.168.89.183:80/;stok=d238a16381659958b6a45ea9027a66b4/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"EnableUploadDownload","tracecode":"126962","input":{"flag":"0","type":"upload"}}}}
+
+2021-07-30 11:14:29:{"remotefunction": {"name": "enableuploaddownload"}}
+2021-07-30 11:14:29:http://192.168.89.183:80/;stok=d238a16381659958b6a45ea9027a66b4/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"checkPlayer","tracecode":"124464"}}}
+
+2021-07-30 11:14:29:{"remotefunction": {"name": "checkplayer", "output": {"playermode": "0", "playstatus": "Unlock", "programlist": "lists/b8bd69e5dfa30b1f44c2bd95ce002e44.xml", "programname": "programs/ff9481018355af6510123cfcffb40556.xml"}}}
+2021-07-30 15:55:35:V20.12.29  >> begin
+2021-07-30 15:55:35:http://192.168.89.183:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"GetVerificationCode","tracecode":"100041"}}}
+
+2021-07-30 15:55:35:{"remotefunction": {"name": "getverificationcode", "output": {"verificationcode": "20210730155536283790"}}}
+2021-07-30 15:55:35:http://192.168.89.183:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogin","tracecode":"118467","input":{"password":"5ea97803da5b4bfe949036ff5333f9b9b9abb4ca","username":"guest","verificationcode":"20210730155536283790"}}}}
+
+2021-07-30 15:55:35:{"remotefunction": {"name": "userlogin", "output": {"sessionID": "58cd61b7ecb2ffe217b688a290891cd1"}}}
+2021-07-30 15:55:35:http://192.168.89.183:80/;stok=58cd61b7ecb2ffe217b688a290891cd1/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"GetProperty","tracecode":"106334","input":{"controllertype":"","height":"","screendata":"","storagemedia":"","width":""}}}}
+
+2021-07-30 15:55:35:{"remotefunction": {"name": "getproperty", "output": {"controllertype": "11608", "height": "32", "screendata": "1", "storagemedia": "emmc", "width": "64"}}}
+2021-07-30 15:55:35:http://192.168.89.183:80/;stok=58cd61b7ecb2ffe217b688a290891cd1/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"QueryDisk","tracecode":"126500","input":{"storagemedia":"emmc"}}}}
+
+2021-07-30 15:55:35:{"remotefunction": {"name": "querydisk", "output": {"filesystem": "ext4", "freesize": "3190423552", "totalsize": "3348062208", "usedpercent": "3.70%", "usedsize": "123625472"}}}
+2021-07-30 15:55:35:SendProgramProc  >> Make begin
+2021-07-30 15:55:35:SendProgramProc  >> Make ok
+2021-07-30 15:55:35:http://192.168.89.183:80/;stok=58cd61b7ecb2ffe217b688a290891cd1/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"FindFile","tracecode":"119169","input":{"items":[{"filename":"programs\/5d687d8ec600f18143ef10f193504625.xml"},{"filename":"lists\/e79d1d1e8b502b9c4bd26118452ec2d0.xml"}                ]}}}}
+
+2021-07-30 15:55:35:{"remotefunction": {"name": "findfile", "output": {"items": [{"filename": "programs/5d687d8ec600f18143ef10f193504625.xml", "mtime": "", "size": "0"}, {"filename": "lists/e79d1d1e8b502b9c4bd26118452ec2d0.xml", "mtime": "", "size": "0"}]}}}
+2021-07-30 15:55:35:http://192.168.89.183:80/;stok=58cd61b7ecb2ffe217b688a290891cd1/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"EnableUploadDownload","tracecode":"115724","input":{"flag":"1","type":"upload"}}}}
+
+2021-07-30 15:55:35:{"remotefunction": {"name": "enableuploaddownload"}}
+2021-07-30 15:55:35:http://192.168.89.183:80/;stok=58cd61b7ecb2ffe217b688a290891cd1/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"FindFile","tracecode":"111478","input":{"items":[{"filename":"programs\/5d687d8ec600f18143ef10f193504625.xml"}                ]}}}}
+
+2021-07-30 15:55:35:{"remotefunction": {"name": "findfile", "output": {"items": [{"filename": "programs/5d687d8ec600f18143ef10f193504625.xml", "mtime": "", "size": "0"}]}}}
+2021-07-30 15:55:35:http://192.168.89.183:80/;stok=58cd61b7ecb2ffe217b688a290891cd1/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"FindTempFile","tracecode":"129358","input":{"filename":"5d687d8ec600f18143ef10f193504625"}}}}
+
+2021-07-30 15:55:35:{"remotefunction": {"name": "findtempfile", "output": {"filename": "5d687d8ec600f18143ef10f193504625", "size": "0"}}}
+2021-07-30 15:55:35:5d687d8ec600f18143ef10f193504625
+2021-07-30 15:55:35:X-Content-Range:bytes 0-470/471
+2021-07-30 15:55:35:Upload OK
+2021-07-30 15:55:35:471 out
+2021-07-30 15:55:35:http://192.168.89.183:80/;stok=58cd61b7ecb2ffe217b688a290891cd1/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"MoveFile","tracecode":"126962","input":{"dst":"programs\/5d687d8ec600f18143ef10f193504625.xml","src":"5d687d8ec600f18143ef10f193504625"}}}}
+
+2021-07-30 15:55:35:{"remotefunction": {"name": "movefile"}}
+2021-07-30 15:55:35:http://192.168.89.183:80/;stok=58cd61b7ecb2ffe217b688a290891cd1/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"FindFile","tracecode":"124464","input":{"items":[{"filename":"lists\/e79d1d1e8b502b9c4bd26118452ec2d0.xml"}                ]}}}}
+
+2021-07-30 15:55:35:{"remotefunction": {"name": "findfile", "output": {"items": [{"filename": "lists/e79d1d1e8b502b9c4bd26118452ec2d0.xml", "mtime": "", "size": "0"}]}}}
+2021-07-30 15:55:36:http://192.168.89.183:80/;stok=58cd61b7ecb2ffe217b688a290891cd1/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"FindTempFile","tracecode":"105705","input":{"filename":"e79d1d1e8b502b9c4bd26118452ec2d0"}}}}
+
+2021-07-30 15:55:36:{"remotefunction": {"name": "findtempfile", "output": {"filename": "e79d1d1e8b502b9c4bd26118452ec2d0", "size": "0"}}}
+2021-07-30 15:55:36:e79d1d1e8b502b9c4bd26118452ec2d0
+2021-07-30 15:55:36:X-Content-Range:bytes 0-320/321
+2021-07-30 15:55:36:Upload OK
+2021-07-30 15:55:36:321 out
+2021-07-30 15:55:36:http://192.168.89.183:80/;stok=58cd61b7ecb2ffe217b688a290891cd1/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"MoveFile","tracecode":"128145","input":{"dst":"lists\/e79d1d1e8b502b9c4bd26118452ec2d0.xml","src":"e79d1d1e8b502b9c4bd26118452ec2d0"}}}}
+
+2021-07-30 15:55:36:{"remotefunction": {"name": "movefile"}}
+2021-07-30 15:55:36:http://192.168.89.183:80/;stok=58cd61b7ecb2ffe217b688a290891cd1/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"EnableUploadDownload","tracecode":"123281","input":{"flag":"0","type":"upload"}}}}
+
+2021-07-30 15:55:36:{"remotefunction": {"name": "enableuploaddownload"}}
+2021-07-30 15:55:36:http://192.168.89.183:80/;stok=58cd61b7ecb2ffe217b688a290891cd1/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"StopPlay","tracecode":"116827","input":{"save":"no","type":"program"}}}}
+
+2021-07-30 15:55:36:{"remotefunction": {"name": "stopplay", "output": {"type": "program"}}}
+2021-07-30 15:55:36:http://192.168.89.183:80/;stok=58cd61b7ecb2ffe217b688a290891cd1/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"LockProgram","tracecode":"109961","input":{"programlockedname":"","programlockedstatus":"0"}}}}
+
+2021-07-30 15:55:36:{"remotefunction": {"name": "lockprogram", "output": {"type": "false"}}}
+2021-07-30 15:55:36:http://192.168.89.183:80/;stok=58cd61b7ecb2ffe217b688a290891cd1/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"Play","tracecode":"100491","input":{"playlist":"lists\/e79d1d1e8b502b9c4bd26118452ec2d0.xml","save":"yes","type":"program"}}}}
+
+2021-07-30 15:55:36:{"remotefunction": {"name": "play", "output": {"message": "lists/e79d1d1e8b502b9c4bd26118452ec2d0.xml", "type": "program"}}}
+2021-07-30 15:55:36:http://192.168.89.183:80/;stok=58cd61b7ecb2ffe217b688a290891cd1/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogout","tracecode":"102995"}}}
+
+2021-07-30 15:55:36:{"remotefunction": {"name": "userlogout"}}
+2021-07-30 15:55:36:V20.12.29  >> end
+2021-07-30 15:55:50:V20.12.29  >> begin
+2021-07-30 15:55:50:http://192.168.89.183:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"GetVerificationCode","tracecode":"100041"}}}
+
+2021-07-30 15:55:50:{"remotefunction": {"name": "getverificationcode", "output": {"verificationcode": "20210730155551132666"}}}
+2021-07-30 15:55:50:http://192.168.89.183:80/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"UserLogin","tracecode":"118467","input":{"password":"26384484a184b5bb754f301fc358eceac5d2fec8","username":"guest","verificationcode":"20210730155551132666"}}}}
+
+2021-07-30 15:55:50:{"remotefunction": {"name": "userlogin", "output": {"sessionID": "bb0748f4234a1869acb01a28fbb595d4"}}}
+2021-07-30 15:55:50:http://192.168.89.183:80/;stok=bb0748f4234a1869acb01a28fbb595d4/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"GetProperty","tracecode":"106334","input":{"controllertype":"","height":"","screendata":"","storagemedia":"","width":""}}}}
+
+2021-07-30 15:55:50:{"remotefunction": {"name": "getproperty", "output": {"controllertype": "11608", "height": "32", "screendata": "1", "storagemedia": "emmc", "width": "64"}}}
+2021-07-30 15:55:50:http://192.168.89.183:80/;stok=bb0748f4234a1869acb01a28fbb595d4/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"QueryDisk","tracecode":"126500","input":{"storagemedia":"emmc"}}}}
+
+2021-07-30 15:55:50:{"remotefunction": {"name": "querydisk", "output": {"filesystem": "ext4", "freesize": "3190398976", "totalsize": "3348062208", "usedpercent": "3.70%", "usedsize": "123650048"}}}
+2021-07-30 15:55:50:SendProgramProc  >> Make begin
+2021-07-30 15:55:50:SendProgramProc  >> Make ok
+2021-07-30 15:55:50:http://192.168.89.183:80/;stok=bb0748f4234a1869acb01a28fbb595d4/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"FindFile","tracecode":"119169","input":{"items":[{"filename":"programs\/5d687d8ec600f18143ef10f193504625.xml"},{"filename":"lists\/e79d1d1e8b502b9c4bd26118452ec2d0.xml"}                ]}}}}
+
+2021-07-30 15:55:50:{"remotefunction": {"name": "findfile", "output": {"items": [{"filename": "programs/5d687d8ec600f18143ef10f193504625.xml", "mtime": "2021-07-30 15:55:36", "size": "471"}, {"filename": "lists/e79d1d1e8b502b9c4bd26118452ec2d0.xml", "mtime": "2021-07-30 15:55:36", "size": "321"}]}}}
+2021-07-30 15:55:50:http://192.168.89.183:80/;stok=bb0748f4234a1869acb01a28fbb595d4/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"EnableUploadDownload","tracecode":"115724","input":{"flag":"1","type":"upload"}}}}
+
+2021-07-30 15:55:50:{"remotefunction": {"name": "enableuploaddownload"}}
+2021-07-30 15:55:50:http://192.168.89.183:80/;stok=bb0748f4234a1869acb01a28fbb595d4/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"FindFile","tracecode":"111478","input":{"items":[{"filename":"programs\/5d687d8ec600f18143ef10f193504625.xml"}                ]}}}}
+
+2021-07-30 15:55:50:{"remotefunction": {"name": "findfile", "output": {"items": [{"filename": "programs/5d687d8ec600f18143ef10f193504625.xml", "mtime": "2021-07-30 15:55:36", "size": "471"}]}}}
+2021-07-30 15:55:50:http://192.168.89.183:80/;stok=bb0748f4234a1869acb01a28fbb595d4/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"FindFile","tracecode":"129358","input":{"items":[{"filename":"lists\/e79d1d1e8b502b9c4bd26118452ec2d0.xml"}                ]}}}}
+
+2021-07-30 15:55:50:{"remotefunction": {"name": "findfile", "output": {"items": [{"filename": "lists/e79d1d1e8b502b9c4bd26118452ec2d0.xml", "mtime": "2021-07-30 15:55:36", "size": "321"}]}}}
+2021-07-30 15:55:51:http://192.168.89.183:80/;stok=bb0748f4234a1869acb01a28fbb595d4/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"EnableUploadDownload","tracecode":"126962","input":{"flag":"0","type":"upload"}}}}
+
+2021-07-30 15:55:51:{"remotefunction": {"name": "enableuploaddownload"}}
+2021-07-30 15:55:51:http://192.168.89.183:80/;stok=bb0748f4234a1869acb01a28fbb595d4/post:{"protocol":{"name":"YQ-COM2","version":"1.0","remotefunction":{"name":"checkPlayer","tracecode":"124464"}}}
+
+2021-07-30 15:55:51:{"remotefunction": {"name": "checkplayer", "output": {"playermode": "0", "playstatus": "Unlock", "programlist": "lists/e79d1d1e8b502b9c4bd26118452ec2d0.xml", "programname": "programs/5d687d8ec600f18143ef10f193504625.xml"}}}

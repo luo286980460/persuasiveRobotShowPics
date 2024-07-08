@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<program name="program_1" bgColor="0xff000000">
+	<textpanel x="0" y="0" w="64" h="32" zOrder="0" stuntType="0" unitType="1" transparency="100">
+		<textUnit content="显示测试test" stuntSpeed="16" stayTime="10" fontColor="0xffff0000" bgColor="0xff000000" fontName="SimSun" fontSize="12" fontSizeType="point" fontAttributes="normal" fontAlignment="0" order="0"/>
+	</textpanel>
+</program>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+  <log>0</log>
+  <serverip>127.0.0.1</serverip>
+  <serverport>9000</serverport>
+  <device>
+    <card>
+      <barcode>C0Y2001806140001</barcode>
+      <port>10001</port>
+    </card>
+  </device>
+</config>

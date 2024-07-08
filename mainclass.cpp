@@ -6,6 +6,7 @@
 #include <QCoreApplication>
 #include <QFile>
 #include <QDebug>
+#include <QJsonDocument>
 
 #define INI_PATH_NAME "/cfg.ini"
 
@@ -58,7 +59,7 @@ void MainClass::initCfg()
         showMsg("ini有误，UdpServer/Port");
         udpServer = false;
     }
-    if(udpServer){
+    if(udpServer && !m_MyUdpServer){
         initMyUdpServer(Port);
         if(m_MyUdpServer) m_MyUdpServer->m_iniJson["UdpServer/Port"] = Port;
     }
@@ -211,5 +212,9 @@ void MainClass::slotUpdateIni()
         m_BX_Y1A->deleteLater();
         m_BX_Y1A= nullptr;
     }
+//    if(m_MyUdpServer){
+//        m_MyUdpServer->deleteLater();
+//        m_MyUdpServer= nullptr;
+//    }
     initCfg();
 }
