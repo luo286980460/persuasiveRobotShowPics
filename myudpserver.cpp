@@ -45,8 +45,8 @@ void MyUdpServer::setIni(QJsonObject& json)
     if(json.contains("Screen/ScreenIp") && json.value("Screen/ScreenIp").isString()){
         emit signalSetIni("Screen/ScreenIp", json.value("Screen/ScreenIp").toString());
     }
-    if(json.contains("Screen/ScreenPort") && json.value("Screen/ScreenPort").isString()){
-        emit signalSetIni("Screen/ScreenPort", json.value("Screen/ScreenPort").toString());
+    if(json.contains("Screen/ScreenPort") && json.value("Screen/ScreenPort").isDouble()){
+        emit signalSetIni("Screen/ScreenPort", json.value("Screen/ScreenPort").toInt());
     }
     if(json.contains("Screen/ScreenWidth") && json.value("Screen/ScreenWidth").isDouble()){
         emit signalSetIni("Screen/ScreenWidth", json.value("Screen/ScreenWidth").toInt());
@@ -86,6 +86,8 @@ void MyUdpServer::ReadPendingDataframs()
     {
         mUdpSocket->readDatagram(_data.data(), _data.size(), &m_clientAddress, &m_clientPort);
         jsonObj = QJsonDocument::fromJson(_data).object();
+
+        //qDebug() << jsonObj;
 
         QJsonObject m_backJson;
         m_backJson.insert("res", "1");  // 1成功 0失败

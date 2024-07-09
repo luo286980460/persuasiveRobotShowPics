@@ -50,6 +50,7 @@ void BX_Y1A::initSendTimer()
     m_toDefProTimer.setInterval(10000);
     connect(&m_toDefProTimer, &QTimer::timeout, this, [=]{
         showDefaultProgram();
+        //system("sudo java -jar  /home/config_project-0.0.1-SNAPSHOT.jar");
         m_toDefProTimer.stop();
     });
     m_toDefProTimer.start();
