@@ -26,6 +26,7 @@ qint64 MyUdpServer::writeDatagram(const QByteArray &datagram)
 
 void MyUdpServer::initIniJson()
 {
+    m_iniJson.insert("Screen/ScreenType", "");
     m_iniJson.insert("Screen/ScreenIp", "");
     m_iniJson.insert("Screen/ScreenPort", "");
     m_iniJson.insert("Screen/ScreenWidth", "");
@@ -42,6 +43,9 @@ void MyUdpServer::initIniJson()
 
 void MyUdpServer::setIni(QJsonObject& json)
 {
+    if(json.contains("Screen/ScreenType") && json.value("Screen/ScreenType").isDouble()){
+        emit signalSetIni("Screen/ScreenType", json.value("Screen/ScreenType").toInt());
+    }
     if(json.contains("Screen/ScreenIp") && json.value("Screen/ScreenIp").isString()){
         emit signalSetIni("Screen/ScreenIp", json.value("Screen/ScreenIp").toString());
     }

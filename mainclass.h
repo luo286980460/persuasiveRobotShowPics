@@ -32,6 +32,7 @@
 class FileMonitoring;
 class BX_Y1A;
 class MyUdpServer;
+class NovaController;
 
 class MainClass : public QObject
 {
@@ -42,9 +43,13 @@ public:
 private:
     void openCfg();
     void initCfg();
-    void initFileMonitoring(QString filePath, QString filePath2, int Lagging, int X, int Y, int Width, int Height);
-    void initBX_Y1A(QString ScreenIp, int ScreenPort, int ScreenWidth, int ScreenHeight);
+    void initFileMonitoring(QString filePath, QString filePath2,    //  初始化文件监控
+                            int Lagging, int X, int Y, int Width,
+                            int Height);
+    void initBX_Y1A(QString ScreenIp, int ScreenPort,               //  初始化仰邦控制器
+                    int ScreenWidth, int ScreenHeight);
     void initMyUdpServer(int port);
+    void initNovaController(QString ScreenIp, int Back2DefaultProgram);                                      //  初始化诺瓦控制器
     void setIni(QString key, QString value);
     void setIni(QString key, int value);
 
@@ -57,10 +62,12 @@ public slots:
     void slotUpdateIni();
 
 private:
-    FileMonitoring* m_fileMonitoring = nullptr;   // 文件监控
-    BX_Y1A* m_BX_Y1A = nullptr;
-    MyUdpServer* m_MyUdpServer = nullptr;
-    QSettings* m_settings;
+    FileMonitoring* m_fileMonitoring = nullptr;     // 文件监控
+    BX_Y1A* m_BX_Y1A = nullptr;                     // 仰邦控制器
+    MyUdpServer* m_MyUdpServer = nullptr;           // udp服务
+    QSettings* m_settings = nullptr;
+    NovaController* m_NovaController = nullptr;     // 诺瓦控制器
+    int m_ScreenType;                               // 屏幕类型
 };
 
 #endif // MAINCLASS_H

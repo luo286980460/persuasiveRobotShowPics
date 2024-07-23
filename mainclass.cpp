@@ -2,6 +2,7 @@
 #include "filemonitoring.h"
 #include "bx_y1a.h"
 #include "myudpserver.h"
+#include "novacontroller.h""
 
 #include <QCoreApplication>
 #include <QFile>
@@ -33,15 +34,19 @@ void MainClass::openCfg()
 
 void MainClass::initCfg()
 {
+    // 显示屏的属性
+    int ScreenType;           // 显示屏类型 0-仰邦 1-诺瓦
     QString ScreenIp;
     int ScreenPort;
     int ScreenWidth;
     int ScreenHeight;
 
+    // 监控文件的路径
     QString FilePath0;
     QString FilePath1;
     int Lagging;
 
+    //	截取图片的范围
     int X;
     int Y;
     int Width;
@@ -65,6 +70,22 @@ void MainClass::initCfg()
     }
 
     // 屏幕
+    ScreenType = m_settings->value("Screen/ScreenType", -1).toInt();
+    if(ScreenType == -1) {
+        showMsg("ini有误，Screen/ScreenType");
+        screen = false;
+        m_ScreenType = -1;
+    } else {
+        if(ScreenType != 0 && ScreenType != 1){
+            showMsg("屏幕类型有误，Screen/ScreenType");
+            screen = false;
+            m_ScreenType = -1;
+        } else{
+            if(m_MyUdpServer) m_MyUdpServer->m_iniJson["Screen/ScreenType"] = ScreenType;
+            m_ScreenType = ScreenType;
+        }
+    }
+
     ScreenIp = m_settings->value("Screen/ScreenIp", "-1").toString();
     if(ScreenIp == "-1") {
         showMsg("ini有误，Screen/ScreenIp");
@@ -96,7 +117,13 @@ void MainClass::initCfg()
     }else{
         if(m_MyUdpServer) m_MyUdpServer->m_iniJson["Screen/ScreenHeight"] = ScreenHeight;
     }
-    if(screen) initBX_Y1A(ScreenIp, ScreenPort, ScreenWidth, ScreenHeight);
+    if(screen) {
+        if(ScreenType == 0){
+            initBX_Y1A(ScreenIp, ScreenPort, ScreenWidth, ScreenHeight);
+        }else if(ScreenType == 1){
+            initNovaController(ScreenIp, 5);
+        }
+    }
 
     // 文件监控
     FilePath0 = m_settings->value("FileMonitoring/FilePath00", "-1").toString();
@@ -147,16 +174,19 @@ void MainClass::initFileMonitoring(QString filePath1, QString filePath2, int Lag
 {
     m_fileMonitoring = new FileMonitoring(filePath1, filePath2, Lagging, X, Y, Width, Height);
     connect(m_fileMonitoring, &FileMonitoring::signalShowPic, this, [=](QString picPath){
-        if(m_BX_Y1A){
 
-            if(m_BX_Y1A && !picPath.isEmpty()){
-//                if(picPath.contains("未")){
-//                    m_BX_Y1A->sendTextAndPic((_TEXT_CHAR*)"小呆逼一个", (_TEXT_CHAR*)(picPath.toLocal8Bit().data()));
-//                }else{
-                    m_BX_Y1A->sendTextAndPic((_TEXT_CHAR*)"请安全驾驶", (_TEXT_CHAR*)(picPath.toLocal8Bit().data()));
-//                }
+        if(m_ScreenType == -1 || picPath.isEmpty()) return;
+
+        if(m_ScreenType == 0){
+            if(m_BX_Y1A){
+                m_BX_Y1A->sendTextAndPic((_TEXT_CHAR*)"请安全驾驶", (_TEXT_CHAR*)(picPath.toLocal8Bit().data()));
+            }
+        }else if(m_ScreenType == 1){
+            if(m_NovaController){
+                emit m_NovaController->signalShowPic(picPath);
             }
         }
+
     });
     m_fileMonitoring->start();
 }
@@ -173,6 +203,12 @@ void MainClass::initMyUdpServer(int port)
     connect(m_MyUdpServer, SIGNAL(signalSetIni(QString,QString)), this, SLOT(slotSetIni(QString,QString)));
     connect(m_MyUdpServer, SIGNAL(signalSetIni(QString,int)), this, SLOT(slotSetIni(QString,int)));
     connect(m_MyUdpServer, &MyUdpServer::signalUpdateIni, this, &MainClass::slotUpdateIni);
+}
+
+void MainClass::initNovaController(QString ScreenIp, int Back2DefaultProgram)
+{
+    m_NovaController = new NovaController(ScreenIp, Back2DefaultProgram);
+    m_NovaController->start();
 }
 
 void MainClass::setIni(QString key, QString value)

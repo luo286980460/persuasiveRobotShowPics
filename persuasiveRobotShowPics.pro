@@ -1,4 +1,4 @@
-QT = core gui network
+QT = core gui network widgets
 
 CONFIG += c++17 cmdline
 
@@ -17,7 +17,9 @@ SOURCES += \
         filemonitoringworker.cpp \
         main.cpp \
         mainclass.cpp \
-        myudpserver.cpp
+        myudpserver.cpp \
+        novacontroller.cpp \
+        novacontrollerworker.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -25,12 +27,15 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    NovaHeader.h \
     YQNetCom.h \
     bx_y1a.h \
     filemonitoring.h \
     filemonitoringworker.h \
     mainclass.h \
-    myudpserver.h
+    myudpserver.h \
+    novacontroller.h \
+    novacontrollerworker.h
 
 unix:!macx: LIBS += -L$$PWD/lib/ -lboost_date_time
 
