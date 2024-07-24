@@ -20,7 +20,7 @@ signals:
     void showMsg(QString msg);
     void signalInitWorker();
     void signalIllegalAct();                        // 相机违法行为
-    void signalShowPic(QString picPath);
+    void signalShowPic(QString picPathName, QString picName = "1.jpg", QString text = "请安全驾驶");
 
 private:
     QThread m_workerThread;                         // 作线程

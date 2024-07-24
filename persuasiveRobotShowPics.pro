@@ -66,3 +66,8 @@ unix:!macx: LIBS += -L$$PWD/lib/ -lfun
 
 INCLUDEPATH += $$PWD/lib
 DEPENDPATH += $$PWD/lib
+
+unix:!macx: LIBS += -L$$PWD/lib/Nova/ -lNovaTraffic
+
+INCLUDEPATH += $$PWD/src
+DEPENDPATH += $$PWD/src

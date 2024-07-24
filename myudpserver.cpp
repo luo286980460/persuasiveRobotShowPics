@@ -26,6 +26,7 @@ qint64 MyUdpServer::writeDatagram(const QByteArray &datagram)
 
 void MyUdpServer::initIniJson()
 {
+    m_iniJson.insert("Screen/Screen2DefPgTime", "");
     m_iniJson.insert("Screen/ScreenType", "");
     m_iniJson.insert("Screen/ScreenIp", "");
     m_iniJson.insert("Screen/ScreenPort", "");
@@ -57,6 +58,9 @@ void MyUdpServer::setIni(QJsonObject& json)
     }
     if(json.contains("Screen/ScreenHeight") && json.value("Screen/ScreenHeight").isDouble()){
         emit signalSetIni("Screen/ScreenHeight", json.value("Screen/ScreenHeight").toInt());
+    }
+    if(json.contains("Screen/Screen2DefPgTime") && json.value("Screen/Screen2DefPgTime").isDouble()){
+        emit signalSetIni("Screen/Screen2DefPgTime", json.value("Screen/Screen2DefPgTime").toInt());
     }
     if(json.contains("FileMonitoring/FilePath01") && json.value("FileMonitoring/FilePath01").isString()){
         emit signalSetIni("FileMonitoring/FilePath01", json.value("FileMonitoring/FilePath01").toString());

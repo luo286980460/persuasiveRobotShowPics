@@ -19,6 +19,7 @@ private:
     void playProgram1();
     void playProgram2();
     void playProgram3();
+    void playProgramDefault(QString picPathName, QString picName, QString text);
 
 signals:
     void showMsg(QString msg);
@@ -26,7 +27,7 @@ signals:
 public slots:
     void slotInit();
     void slotIllegalAct();              // 相机违法行为
-    void slotShowPic(QString picPath);
+    void slotShowPic(QString picPathName, QString picName = "1.jpg", QString text = "请安全驾驶");
 
 private:
     QString m_ip;

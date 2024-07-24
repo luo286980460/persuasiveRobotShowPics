@@ -2,7 +2,7 @@
 #include "filemonitoring.h"
 #include "bx_y1a.h"
 #include "myudpserver.h"
-#include "novacontroller.h""
+#include "novacontroller.h"
 
 #include <QCoreApplication>
 #include <QFile>
@@ -10,6 +10,8 @@
 #include <QJsonDocument>
 
 #define INI_PATH_NAME "/cfg.ini"
+
+#define DEFAULT_PROGRAME_PICNAME "2.jpg"
 
 MainClass::MainClass(QObject *parent)
     : QObject{parent}
@@ -40,6 +42,7 @@ void MainClass::initCfg()
     int ScreenPort;
     int ScreenWidth;
     int ScreenHeight;
+    int Screen2DefPgTime;
 
     // 监控文件的路径
     QString FilePath0;
@@ -117,11 +120,20 @@ void MainClass::initCfg()
     }else{
         if(m_MyUdpServer) m_MyUdpServer->m_iniJson["Screen/ScreenHeight"] = ScreenHeight;
     }
+
+    Screen2DefPgTime = m_settings->value("Screen/Screen2DefPgTime", -1).toInt();
+    if(Screen2DefPgTime == -1) {
+        showMsg("ini有误，Screen/Screen2DefPgTime");
+        screen = false;
+    }else{
+        if(m_MyUdpServer) m_MyUdpServer->m_iniJson["Screen/Screen2DefPgTime"] = Screen2DefPgTime;
+    }
+
     if(screen) {
         if(ScreenType == 0){
             initBX_Y1A(ScreenIp, ScreenPort, ScreenWidth, ScreenHeight);
         }else if(ScreenType == 1){
-            initNovaController(ScreenIp, 5);
+            initNovaController(ScreenIp, Screen2DefPgTime);
         }
     }
 
@@ -175,6 +187,10 @@ void MainClass::initFileMonitoring(QString filePath1, QString filePath2, int Lag
     m_fileMonitoring = new FileMonitoring(filePath1, filePath2, Lagging, X, Y, Width, Height);
     connect(m_fileMonitoring, &FileMonitoring::signalShowPic, this, [=](QString picPath){
 
+
+//        qDebug() << "-------------picPath: " << picPath;
+//        qDebug() << "-------------signalShowPic: " << m_NovaController;
+
         if(m_ScreenType == -1 || picPath.isEmpty()) return;
 
         if(m_ScreenType == 0){
@@ -183,7 +199,7 @@ void MainClass::initFileMonitoring(QString filePath1, QString filePath2, int Lag
             }
         }else if(m_ScreenType == 1){
             if(m_NovaController){
-                emit m_NovaController->signalShowPic(picPath);
+                emit m_NovaController->signalShowPic(picPath, DEFAULT_PROGRAME_PICNAME);
             }
         }
 

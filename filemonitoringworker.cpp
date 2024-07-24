@@ -211,6 +211,7 @@ void FileMonitoringWorker::dealPicFiles(QString fileName)
 
     QString oldName = pic.filePath();
     QString newName;
+    //qDebug() << "oldName: " << oldName;
 
     /* 图片截取并保存 */
     newName = cutPic(oldName);

@@ -1,9 +1,13 @@
 #include <QApplication>
 #include <QDebug>
+#include <QThread>
+#include <QTextCodec>
 
 #include "novacontrollerworker.h"
 #include "src/NovaTraffic.h"
 #include "NovaHeader.h"
+
+#define DEFAULT_PROGRAME_PICNAME "1.jpg"
 
 NovaControllerWorker::NovaControllerWorker(QString ip, int Back2DefaultProgram, QObject *parent)
     : QObject{parent}
@@ -21,7 +25,6 @@ void NovaControllerWorker::playProgram(int id)
     qDebug() << "playProgram";
     if(m_traffic && m_timer){
 
-        qDebug() << QString("播放节目 %1 ").arg(id);
         emit showMsg(QString("播放节目 %1 ").arg(id));
 
         switch (id) {
@@ -95,18 +98,32 @@ void NovaControllerWorker::playProgram3()
     //emit showMsg(QString("playProgram1() sendPlayList res = %1").arg(res));
 }
 
+void NovaControllerWorker::playProgramDefault(QString picPathName, QString picName, QString text)
+{
+    // 下发文件
+    int res = m_traffic->sendFile(picPathName.toLocal8Bit(), picName.toLocal8Bit());
+    qDebug() << "下发文件 res ： " << res;
+    // 发送节目
+    QString cmd = PROGRAM1;
+    cmd = cmd.arg(text).arg(picName);
+    res = m_traffic->sendPlayList(1, cmd.toLocal8Bit().data());
+    qDebug() << "下发节目 res ： " << res;
+}
+
 void NovaControllerWorker::slotInit()
 {
     m_traffic = new NovaTraffic(m_ip.toLocal8Bit(), m_port);
 
     // 播放节目1 默认节目
-    playProgram(1);
+    slotShowPic(QApplication::applicationDirPath() + "/" + DEFAULT_PROGRAME_PICNAME);
+    m_Back2DefaultProgramTimeFlag = m_Back2DefaultProgramTime+1;
 
     m_timer = new QTimer(this);
     m_timer->setInterval(1000);
     connect(m_timer, &QTimer::timeout, this, [=](){
-        //showMsg(QString("m_playFlag:%1 m_ProgramInterval:%2 ").arg(m_playFlag).arg(m_ProgramInterval));
-        //showMsg(QString("m_Back2DefaultProgramTimeFlag:%1 m_Back2DefaultProgramTime:%2 ").arg(m_Back2DefaultProgramTimeFlag).arg(m_Back2DefaultProgramTime));
+
+        //qDebug() << "m_Back2DefaultProgramTimeFlag: " << m_Back2DefaultProgramTimeFlag;
+
         if(m_playFlag < m_ProgramInterval){         // 不能发送节目
             m_playFlag++;
             if(m_Back2DefaultProgramTimeFlag < m_Back2DefaultProgramTime){    // 等待发送节目
@@ -116,8 +133,8 @@ void NovaControllerWorker::slotInit()
         }else if(m_playFlag == m_ProgramInterval){  // 可发送节目
             if(m_Back2DefaultProgramTimeFlag == m_Back2DefaultProgramTime){
                 // 播放节目1 默认节目
-                playProgram(2);
-                m_Back2DefaultProgramTimeFlag++;
+                slotShowPic(QApplication::applicationDirPath() + "/" + DEFAULT_PROGRAME_PICNAME);
+                m_Back2DefaultProgramTimeFlag = m_Back2DefaultProgramTime+1;
             }else if(m_Back2DefaultProgramTimeFlag < m_Back2DefaultProgramTime){    // 等待发送节目
                 m_Back2DefaultProgramTimeFlag++;
             }
@@ -135,16 +152,8 @@ void NovaControllerWorker::slotIllegalAct()
     }
 }
 
-void NovaControllerWorker::slotShowPic(QString picPath)
+void NovaControllerWorker::slotShowPic(QString picPathName, QString picName, QString text)
 {
-    // 下发文件
-    int res = m_traffic->sendFile(picPath.toLocal8Bit(),
-                                  QString(PROGRAM2_ITEM1_PIC).toLocal8Bit());
-
-    //emit showMsg(QString("playProgram2() sendFile res = %1").arg(res));
-
-    // 发送节目
-    char program[] = PROGRAM2;
-    m_traffic->sendPlayList(2, program);
-
+    playProgramDefault(picPathName, picName, text);
+    m_Back2DefaultProgramTimeFlag = 0;
 }
