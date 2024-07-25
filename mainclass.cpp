@@ -1,6 +1,6 @@
 #include "mainclass.h"
 #include "filemonitoring.h"
-#include "bx_y1a.h"
+//#include "bx_y1a.h"
 #include "myudpserver.h"
 #include "novacontroller.h"
 
@@ -131,7 +131,7 @@ void MainClass::initCfg()
 
     if(screen) {
         if(ScreenType == 0){
-            initBX_Y1A(ScreenIp, ScreenPort, ScreenWidth, ScreenHeight);
+//            initBX_Y1A(ScreenIp, ScreenPort, ScreenWidth, ScreenHeight);
         }else if(ScreenType == 1){
             initNovaController(ScreenIp, Screen2DefPgTime);
         }
@@ -194,9 +194,9 @@ void MainClass::initFileMonitoring(QString filePath1, QString filePath2, int Lag
         if(m_ScreenType == -1 || picPath.isEmpty()) return;
 
         if(m_ScreenType == 0){
-            if(m_BX_Y1A){
-                m_BX_Y1A->sendTextAndPic((_TEXT_CHAR*)"请安全驾驶", (_TEXT_CHAR*)(picPath.toLocal8Bit().data()));
-            }
+//            if(m_BX_Y1A){
+//                m_BX_Y1A->sendTextAndPic((_TEXT_CHAR*)"请安全驾驶", (_TEXT_CHAR*)(picPath.toLocal8Bit().data()));
+//            }
         }else if(m_ScreenType == 1){
             if(m_NovaController){
                 emit m_NovaController->signalShowPic(picPath, DEFAULT_PROGRAME_PICNAME);
@@ -207,10 +207,10 @@ void MainClass::initFileMonitoring(QString filePath1, QString filePath2, int Lag
     m_fileMonitoring->start();
 }
 
-void MainClass::initBX_Y1A(QString ScreenIp, int ScreenPort, int ScreenWidth, int ScreenHeight)
-{
-    m_BX_Y1A = new BX_Y1A(ScreenIp, ScreenPort, ScreenWidth, ScreenHeight);
-}
+//void MainClass::initBX_Y1A(QString ScreenIp, int ScreenPort, int ScreenWidth, int ScreenHeight)
+//{
+//    m_BX_Y1A = new BX_Y1A(ScreenIp, ScreenPort, ScreenWidth, ScreenHeight);
+//}
 
 void MainClass::initMyUdpServer(int port)
 {
@@ -260,10 +260,10 @@ void MainClass::slotUpdateIni()
         m_fileMonitoring->deleteLater();
         m_fileMonitoring= nullptr;
     }
-    if(m_BX_Y1A) {
-        m_BX_Y1A->deleteLater();
-        m_BX_Y1A= nullptr;
-    }
+//    if(m_BX_Y1A) {
+//        m_BX_Y1A->deleteLater();
+//        m_BX_Y1A= nullptr;
+//    }
 //    if(m_MyUdpServer){
 //        m_MyUdpServer->deleteLater();
 //        m_MyUdpServer= nullptr;

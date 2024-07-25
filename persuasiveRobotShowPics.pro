@@ -12,7 +12,7 @@ CONFIG += c++17 cmdline
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        bx_y1a.cpp \
+#        bx_y1a.cpp \
         filemonitoring.cpp \
         filemonitoringworker.cpp \
         main.cpp \
@@ -29,7 +29,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     NovaHeader.h \
     YQNetCom.h \
-    bx_y1a.h \
+#    bx_y1a.h \
     filemonitoring.h \
     filemonitoringworker.h \
     mainclass.h \
@@ -37,35 +37,35 @@ HEADERS += \
     novacontroller.h \
     novacontrollerworker.h
 
-unix:!macx: LIBS += -L$$PWD/lib/ -lboost_date_time
+#unix:!macx: LIBS += -L$$PWD/lib/ -lboost_date_time
 
-INCLUDEPATH += $$PWD/lib
-DEPENDPATH += $$PWD/lib
+#INCLUDEPATH += $$PWD/lib
+#DEPENDPATH += $$PWD/lib
 
-unix:!macx: LIBS += -L$$PWD/lib/ -lboost_filesystem
+#unix:!macx: LIBS += -L$$PWD/lib/ -lboost_filesystem
 
-INCLUDEPATH += $$PWD/lib
-DEPENDPATH += $$PWD/lib
+#INCLUDEPATH += $$PWD/lib
+#DEPENDPATH += $$PWD/lib
 
-unix:!macx: LIBS += -L$$PWD/lib/ -lboost_system
+#unix:!macx: LIBS += -L$$PWD/lib/ -lboost_system
 
-INCLUDEPATH += $$PWD/lib
-DEPENDPATH += $$PWD/lib
+#INCLUDEPATH += $$PWD/lib
+#DEPENDPATH += $$PWD/lib
 
-unix:!macx: LIBS += -L$$PWD/lib/ -lboost_thread
+#unix:!macx: LIBS += -L$$PWD/lib/ -lboost_thread
 
-INCLUDEPATH += $$PWD/lib
-DEPENDPATH += $$PWD/lib
+#INCLUDEPATH += $$PWD/lib
+#DEPENDPATH += $$PWD/lib
 
-unix:!macx: LIBS += -L$$PWD/lib/ -lcurl
+#unix:!macx: LIBS += -L$$PWD/lib/ -lcurl
 
-INCLUDEPATH += $$PWD/lib
-DEPENDPATH += $$PWD/lib
+#INCLUDEPATH += $$PWD/lib
+#DEPENDPATH += $$PWD/lib
 
-unix:!macx: LIBS += -L$$PWD/lib/ -lfun
+#unix:!macx: LIBS += -L$$PWD/lib/ -lfun
 
-INCLUDEPATH += $$PWD/lib
-DEPENDPATH += $$PWD/lib
+#INCLUDEPATH += $$PWD/lib
+#DEPENDPATH += $$PWD/lib
 
 unix:!macx: LIBS += -L$$PWD/lib/Nova/ -lNovaTraffic
 
