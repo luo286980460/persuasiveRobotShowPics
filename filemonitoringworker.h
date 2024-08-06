@@ -22,6 +22,8 @@ private:
 //    void sendPic2Led(QString base64);
     void initTimer();
     QString cutPic(QString filePath);
+    QString cutPicFromJson(QString filePath);
+
     void deleteBackUp();    // 清理备份文件
 
 

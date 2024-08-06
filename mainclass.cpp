@@ -187,11 +187,41 @@ void MainClass::initFileMonitoring(QString filePath1, QString filePath2, int Lag
     m_fileMonitoring = new FileMonitoring(filePath1, filePath2, Lagging, X, Y, Width, Height);
     connect(m_fileMonitoring, &FileMonitoring::signalShowPic, this, [=](QString picPath){
 
+        QString illegalCode;
+        QString illegalType;
+        QStringList list = picPath.split("_", QString::SkipEmptyParts);
 
-//        qDebug() << "-------------picPath: " << picPath;
-//        qDebug() << "-------------signalShowPic: " << m_NovaController;
+        if(m_ScreenType == -1 || picPath.isEmpty() || list.size() < 2) return;
 
-        if(m_ScreenType == -1 || picPath.isEmpty()) return;
+        illegalCode = list.at(1);
+
+
+        // 文件名 _ 分割 第一个是违法行为
+        /**
+            01 不戴头盔
+            02 违法载人
+            03 加装车棚
+            04 违法超员
+            05 危险驾驶
+            06 逆向行驶
+        **/
+
+        if(illegalCode == "01"){
+            illegalType = "请佩戴头盔";
+        }else if(illegalCode == "02"){
+            illegalType = "请不要载人";
+        }else if(illegalCode == "03"){
+            illegalType = "请勿改装车";
+        }else if(illegalCode == "04"){
+            illegalType = "请不要超员";
+        }else if(illegalCode == "05"){
+            illegalType = "请安全驾驶";
+        }else if(illegalCode == "06"){
+            illegalType = "请不要逆行";
+        }else{
+            illegalType = "请安全驾驶";
+        }
+
 
         if(m_ScreenType == 0){
 //            if(m_BX_Y1A){
@@ -199,7 +229,7 @@ void MainClass::initFileMonitoring(QString filePath1, QString filePath2, int Lag
 //            }
         }else if(m_ScreenType == 1){
             if(m_NovaController){
-                emit m_NovaController->signalShowPic(picPath, DEFAULT_PROGRAME_PICNAME);
+                emit m_NovaController->signalShowPic(picPath, DEFAULT_PROGRAME_PICNAME, illegalType);
             }
         }
 
@@ -209,7 +239,7 @@ void MainClass::initFileMonitoring(QString filePath1, QString filePath2, int Lag
 
 //void MainClass::initBX_Y1A(QString ScreenIp, int ScreenPort, int ScreenWidth, int ScreenHeight)
 //{
-//    m_BX_Y1A = new BX_Y1A(ScreenIp, ScreenPort, ScreenWidth, ScreenHeight);
+//    m_BX_Y1A .= new BX_Y1A(ScreenIp, ScreenPort, ScreenWidth, ScreenHeight);
 //}
 
 void MainClass::initMyUdpServer(int port)

@@ -8,6 +8,8 @@
 #include <QImage>
 #include <QThread>
 #include <QCoreApplication>
+#include <QPixmap>
+#include <QLabel>
 
 #include "filemonitoringworker.h"
 
@@ -37,14 +39,32 @@ void FileMonitoringWorker::initFileMonitoring()
     m_fileMonitoring = new QFileSystemWatcher(this);
     connect(m_fileMonitoring, SIGNAL(directoryChanged(QString)), this, SLOT(dealPicFiles(QString)));
 
-    QDir dir(m_filePathData1);
-    if(!dir.exists()){
-        dir.mkpath(m_filePathData1);
-        system(QString("chmod -R a+rwx %1").arg(m_filePathData1).toLocal8Bit());
+    // QDir dir(m_filePathData1);
+    // if(!dir.exists()){
+    //     dir.mkpath(m_filePathData1);
+    //     system(QString("chmod -R a+rwx %1").arg(m_filePathData1).toLocal8Bit());
+    // }
+
+    // m_fileMonitoring->addPath(m_filePathData1);
+
+    QDir dir1(m_filePath1);
+    if(!dir1.exists()){
+        dir1.mkpath(m_filePath1);
+        system(QString("chmod -R a+rwx %1").arg(m_filePath1).toLocal8Bit());
     }
 
-    m_fileMonitoring->addPath(m_filePathData1);
-    qDebug() << "更新监控路径：" << m_filePathData1;
+    QDir dir2(m_filePath2);
+    if(!dir2.exists()){
+        dir2.mkpath(m_filePath2);
+        system(QString("chmod -R a+rwx %1").arg(m_filePath2).toLocal8Bit());
+    }
+
+    m_fileMonitoring->addPath(m_filePath1);
+    m_fileMonitoring->addPath(m_filePath2);
+
+
+    qDebug() << "更新监控路径：" << m_filePath1;
+    qDebug() << "更新监控路径：" << m_filePath2;
 }
 
 void FileMonitoringWorker::updatePath()
@@ -63,10 +83,16 @@ void FileMonitoringWorker::updatePath()
 
     //qDebug() << "m_picLogPath:  " << m_picLogPath;
     QDateTime currTime = QDateTime::currentDateTime();
-    m_filePathData1.replace("%1", currTime.toString("yyyyMMdd"));
-    m_filePathData1.replace("%2", currTime.toString("yyyy"));
-    m_filePathData1.replace("%3", currTime.toString("MM"));
-    m_filePathData1.replace("%4", currTime.toString("dd"));
+    // m_filePathData1.replace("%1", currTime.toString("yyyyMMdd"));
+    // m_filePathData1.replace("%2", currTime.toString("yyyy"));
+    // m_filePathData1.replace("%3", currTime.toString("MM"));
+    // m_filePathData1.replace("%4", currTime.toString("dd"));
+
+
+
+    m_filePath1.replace("%1", currTime.toString("yyyy-MM-dd"));
+    m_filePath2.replace("%1", currTime.toString("yyyy-MM-dd"));
+
     initFileMonitoring();
 }
 
@@ -148,6 +174,40 @@ QString FileMonitoringWorker::cutPic(QString filePath)
     return savePath;
 }
 
+QString FileMonitoringWorker::cutPicFromJson(QString filePath)
+{
+    if(filePath.isEmpty()) return "";
+
+    QString savePath = m_picLogPath + filePath.split("/").last().replace(".json", ".jpg");
+    QByteArray imgData;
+    QJsonDocument jsonDoc;
+    QJsonObject jsonObj;
+    QImage image;
+
+    QFile file(filePath);
+    if(file.exists() && file.open(QIODevice::ReadWrite)){
+        QByteArray by = file.readAll();
+        jsonDoc = QJsonDocument::fromJson( by);
+        jsonObj = jsonDoc.object();
+        //qDebug() << "by: " << by;
+    }else{
+        return "";
+    }
+
+    imgData = QByteArray::fromBase64(jsonObj.value("zpstr1").toString().split(",",QString::SkipEmptyParts).last().toLocal8Bit());
+    bool res = image.loadFromData(imgData, "JPG");
+
+    //image1 = image.scaledToHeight(310);
+    image = image.copy(m_imgX, m_imgY, m_imgWidth, m_imgHeight);
+
+    if(!image.isNull()){
+        image = image.scaledToHeight(image.height()/2);
+    }
+
+    image.save(savePath);
+    return savePath;
+}
+
 void FileMonitoringWorker::deleteBackUp()
 {
     QString path = QCoreApplication::applicationDirPath() + "/picLog/";
@@ -182,23 +242,39 @@ void FileMonitoringWorker::slotInitWorker()
 
 void FileMonitoringWorker::dealPicFiles(QString fileName)
 {
-    //打开目录
+    // 读取json源文件
     QDir dir(fileName);
 
     //提取文件信息链表
     QFileInfoList inforList = dir.entryInfoList(QDir::Files);
     QFileInfo pic;    // 待显示的照片
 
+    // 文件名 _ 分割 第一个是违法行为
+    /**
+        01 不戴头盔
+        02 违法载人
+        03 加载车棚
+        04 违法超员
+        05 危险驾驶
+        06 逆向行驶
+    **/
+
     int i = 0;
     //遍历文件信息链表,并进行相关操作
     foreach (QFileInfo info, inforList) {
         //qDebug() << "info.fileName():  "<< info.fileName();
+        QString fileName = info.fileName();
         QString filePath = info.filePath();
-        if(filePath.contains("_scale") || filePath.contains("_510_")){
+        // 违法行为代码
+        QString illgCode = fileName.split("_", QString::SkipEmptyParts).at(1);
+        if(illgCode != "01" && illgCode != "02" && illgCode != "03"
+            && illgCode != "04" && illgCode != "05" && illgCode != "06"){
+
             QFile _file(filePath);
             _file.remove();
             continue;
         }
+
         QThread::msleep(m_lagging);
         if(!i){
             pic = info;
@@ -214,10 +290,53 @@ void FileMonitoringWorker::dealPicFiles(QString fileName)
     //qDebug() << "oldName: " << oldName;
 
     /* 图片截取并保存 */
-    newName = cutPic(oldName);
+    newName = cutPicFromJson(oldName);
+
     emit signalShowPic(newName);
 
     /* 删除原图 */
     if(!oldName.isEmpty()) QFile::remove(oldName);
+
+
+
+    // {   // 读取图片源文件
+    //     //打开目录
+    //     QDir dir(fileName);
+
+    //     //提取文件信息链表
+    //     QFileInfoList inforList = dir.entryInfoList(QDir::Files);
+    //     QFileInfo pic;    // 待显示的照片
+
+    //     int i = 0;
+    //     //遍历文件信息链表,并进行相关操作
+    //     foreach (QFileInfo info, inforList) {
+    //         //qDebug() << "info.fileName():  "<< info.fileName();
+    //         QString filePath = info.filePath();
+    //         if(filePath.contains("_scale") || filePath.contains("_510_")){
+    //             QFile _file(filePath);
+    //             _file.remove();
+    //             continue;
+    //         }
+    //         QThread::msleep(m_lagging);
+    //         if(!i){
+    //             pic = info;
+    //             ++i;
+    //         }
+    //         else{
+    //             pic = getNewer(&pic, &info);
+    //         }
+    //     }
+
+    //     QString oldName = pic.filePath();
+    //     QString newName;
+    //     //qDebug() << "oldName: " << oldName;
+
+    //     /* 图片截取并保存 */
+    //     newName = cutPic(oldName);
+    //     emit signalShowPic(newName);
+
+    //     /* 删除原图 */
+    //     if(!oldName.isEmpty()) QFile::remove(oldName);
+    // }
 
 }
