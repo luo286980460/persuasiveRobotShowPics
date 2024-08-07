@@ -174,15 +174,18 @@ QString FileMonitoringWorker::cutPic(QString filePath)
     return savePath;
 }
 
-QString FileMonitoringWorker::cutPicFromJson(QString filePath)
+QString FileMonitoringWorker::cutPicFromJson(QString filePath, QString illgCode)
 {
     if(filePath.isEmpty()) return "";
 
     QString savePath = m_picLogPath + filePath.split("/").last().replace(".json", ".jpg");
-    QByteArray imgData;
-    QJsonDocument jsonDoc;
+    QJsonDocument jsonDoc;                  // 源文件 json
     QJsonObject jsonObj;
-    QImage image;
+    QByteArray imgData;                     // 原图的字节数组
+    QImage image;                           // 原图
+    QStringList cutValeList;                // 裁切图片的所需参数列表
+    int cutX, cutY, cutWidth, cutHeight;    // 裁切图片的所需参数整型
+    QString illegalCode;
 
     QFile file(filePath);
     if(file.exists() && file.open(QIODevice::ReadWrite)){
@@ -195,14 +198,24 @@ QString FileMonitoringWorker::cutPicFromJson(QString filePath)
     }
 
     imgData = QByteArray::fromBase64(jsonObj.value("zpstr1").toString().split(",",QString::SkipEmptyParts).last().toLocal8Bit());
-    bool res = image.loadFromData(imgData, "JPG");
+    image.loadFromData(imgData, "JPG");
 
+    //cutValeList = jsonObj.value("clwz").toString().split(",",QString::SkipEmptyParts);
     //image1 = image.scaledToHeight(310);
-    image = image.copy(m_imgX, m_imgY, m_imgWidth, m_imgHeight);
-
-    if(!image.isNull()){
+    // if(jsonObj.value("clwz").isString() && cutValeList.size() == 4){
+    //     cutX = cutValeList.at(0).toInt();
+    //     cutY = cutValeList.at(1).toInt();
+    //     cutWidth = cutValeList.at(2).toInt();
+    //     cutHeight = cutValeList.at(3).toInt();
+    //     image = image.copy(cutX, cutY, cutWidth, cutHeight);
+    // }else{
+        image = image.copy(m_imgX, m_imgY, m_imgWidth, m_imgHeight);
         image = image.scaledToHeight(image.height()/2);
-    }
+    // }
+
+    // if(!image.isNull()){
+    //     image = image.scaledToHeight(image.height()/2);
+    // }
 
     image.save(savePath);
     return savePath;
@@ -242,6 +255,7 @@ void FileMonitoringWorker::slotInitWorker()
 
 void FileMonitoringWorker::dealPicFiles(QString fileName)
 {
+    QString illgCode;   // 违法代码
     // 读取json源文件
     QDir dir(fileName);
 
@@ -289,13 +303,15 @@ void FileMonitoringWorker::dealPicFiles(QString fileName)
     QString newName;
     //qDebug() << "oldName: " << oldName;
 
-    /* 图片截取并保存 */
-    newName = cutPicFromJson(oldName);
+    /* 图片截取并保存 json源文件 */
+    newName = cutPicFromJson(oldName, illgCode);
 
     emit signalShowPic(newName);
 
     /* 删除原图 */
-    if(!oldName.isEmpty()) QFile::remove(oldName);
+    if(!oldName.isEmpty()) {
+        QFile::remove(oldName);
+    }
 
 
 
