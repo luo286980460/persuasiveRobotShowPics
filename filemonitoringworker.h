@@ -13,7 +13,7 @@ class FileMonitoringWorker : public QObject
     Q_OBJECT
 public:
     explicit FileMonitoringWorker(QString filePath1, QString filePath2, int Lagging,
-                                  int X, int Y, int Width, int Height, QObject *parent = nullptr);
+                                  int X, int Y, int Width, int Height, int m_manuallyCutImgSwitch, QObject *parent = nullptr);
 
 private:
     void initFileMonitoring();              // 打开文件监控
@@ -47,7 +47,8 @@ private:
     QString m_picLogPath;                   // 照片临时存储路径
     int m_lagging;                          // 照片处理延迟
     QTimer* m_timer = nullptr;
-    int m_imgX                              // 照片截图左上角x坐标
+    bool m_manuallyCutImgSwitch = false;    // 手动截取图片的开关（打开时使用配置文件里的坐标截取图片）
+    int m_imgX;                             // 照片截图左上角x坐标
         ;
     int m_imgY                              // 照片截图左上角y坐标
         ;

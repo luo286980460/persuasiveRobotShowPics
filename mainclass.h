@@ -45,7 +45,7 @@ private:
     void initCfg();
     void initFileMonitoring(QString filePath, QString filePath2,    //  初始化文件监控
                             int Lagging, int X, int Y, int Width,
-                            int Height);
+                            int Height, int m_manuallyCutImgSwitch);
 //    void initBX_Y1A(QString ScreenIp, int ScreenPort,               //  初始化仰邦控制器
 //                    int ScreenWidth, int ScreenHeight);
     void initMyUdpServer(int port);

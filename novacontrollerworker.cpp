@@ -135,6 +135,7 @@ void NovaControllerWorker::slotInit()
                 // 播放节目1 默认节目
                 slotShowPic(QApplication::applicationDirPath() + "/" + DEFAULT_PROGRAME_PICNAME);
                 m_Back2DefaultProgramTimeFlag = m_Back2DefaultProgramTime+1;
+                m_playFlag = 0;
             }else if(m_Back2DefaultProgramTimeFlag < m_Back2DefaultProgramTime){    // 等待发送节目
                 m_Back2DefaultProgramTimeFlag++;
             }

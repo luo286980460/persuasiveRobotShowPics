@@ -11,7 +11,7 @@ class FileMonitoring : public QObject
     Q_OBJECT
 public:
     explicit FileMonitoring(QString filePath1, QString filePath2, int Lagging,
-                            int X, int Y, int Width, int Height, QObject *parent = nullptr);
+                            int X, int Y, int Width, int Height, int m_manuallyCutImgSwitch, QObject *parent = nullptr);
     ~FileMonitoring();
 
     void start();

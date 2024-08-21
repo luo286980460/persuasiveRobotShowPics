@@ -40,6 +40,7 @@ void MyUdpServer::initIniJson()
     m_iniJson.insert("Image/Y", "");
     m_iniJson.insert("Image/Width", "");
     m_iniJson.insert("Image/Height", "");
+    m_iniJson.insert("Image/m_manuallyCutImgSwitch", "");
 }
 
 void MyUdpServer::setIni(QJsonObject& json)
@@ -79,6 +80,9 @@ void MyUdpServer::setIni(QJsonObject& json)
     }
     if(json.contains("Image/Height") && json.value("Image/Height").isDouble()){
         emit signalSetIni("Image/Height", json.value("Image/Height").toInt());
+    }
+    if(json.contains("Image/m_manuallyCutImgSwitch") && json.value("Image/m_manuallyCutImgSwitch").isDouble()){
+        emit signalSetIni("Image/m_manuallyCutImgSwitch", json.value("Image/m_manuallyCutImgSwitch").toInt());
     }
     emit signalUpdateIni();
 }

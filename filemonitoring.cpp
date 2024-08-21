@@ -2,10 +2,10 @@
 #include "filemonitoringworker.h"
 
 FileMonitoring::FileMonitoring(QString filePath1, QString filePath2, int Lagging,
-                               int X, int Y, int Width, int Height, QObject *parent)
+                               int X, int Y, int Width, int Height, int m_manuallyCutImgSwitch, QObject *parent)
     : QObject{parent}
 {
-    m_work = new FileMonitoringWorker(filePath1, filePath2, Lagging, X, Y, Width, Height);
+    m_work = new FileMonitoringWorker(filePath1, filePath2, Lagging, X, Y, Width, Height, m_manuallyCutImgSwitch);
     m_work->moveToThread(&m_workerThread);
 
     connect(&m_workerThread, &QThread::finished, m_work, &QObject::deleteLater);    // 退出线程必加

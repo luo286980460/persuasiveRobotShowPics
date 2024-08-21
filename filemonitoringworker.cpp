@@ -14,7 +14,7 @@
 #include "filemonitoringworker.h"
 
 FileMonitoringWorker::FileMonitoringWorker(QString filePath1, QString filePath2, int Lagging,
-                                           int X, int Y, int Width, int Height, QObject *parent)
+                                           int X, int Y, int Width, int Height, int m_manuallyCutImgSwitch, QObject *parent)
     : QObject{parent}
     , m_filePath1(filePath1)
     , m_filePath2(filePath2)
@@ -23,6 +23,7 @@ FileMonitoringWorker::FileMonitoringWorker(QString filePath1, QString filePath2,
     , m_imgY(Y)
     , m_imgWidth(Width)
     , m_imgHeight(Height)
+    , m_manuallyCutImgSwitch(m_manuallyCutImgSwitch)
 {
     qDebug() << "照片处理延时：" << m_lagging << " 毫秒";
 
@@ -202,20 +203,20 @@ QString FileMonitoringWorker::cutPicFromJson(QString filePath, QString illgCode)
 
     //cutValeList = jsonObj.value("clwz").toString().split(",",QString::SkipEmptyParts);
     //image1 = image.scaledToHeight(310);
-    // if(jsonObj.value("clwz").isString() && cutValeList.size() == 4){
-    //     cutX = cutValeList.at(0).toInt();
-    //     cutY = cutValeList.at(1).toInt();
-    //     cutWidth = cutValeList.at(2).toInt();
-    //     cutHeight = cutValeList.at(3).toInt();
-    //     image = image.copy(cutX, cutY, cutWidth, cutHeight);
-    // }else{
+    if(jsonObj.value("clwz").isString() && cutValeList.size() == 4  && !m_manuallyCutImgSwitch){
+        cutX = cutValeList.at(0).toInt();
+        cutY = cutValeList.at(1).toInt();
+        cutWidth = cutValeList.at(2).toInt();
+        cutHeight = cutValeList.at(3).toInt();
+        image = image.copy(cutX, cutY, cutWidth, cutHeight);
+    }else{
         image = image.copy(m_imgX, m_imgY, m_imgWidth, m_imgHeight);
         image = image.scaledToHeight(image.height()/2);
-    // }
+    }
 
-    // if(!image.isNull()){
-    //     image = image.scaledToHeight(image.height()/2);
-    // }
+    if(!image.isNull()){
+        image = image.scaledToHeight(image.height()/2);
+    }
 
     image.save(savePath);
     return savePath;

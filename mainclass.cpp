@@ -54,6 +54,7 @@ void MainClass::initCfg()
     int Y;
     int Width;
     int Height;
+    int m_manuallyCutImgSwitch;
 
     int Port;
 
@@ -164,27 +165,30 @@ void MainClass::initCfg()
     Y = m_settings->value("Image/Y", -1).toInt();
     Width = m_settings->value("Image/Width", -1).toInt();
     Height = m_settings->value("Image/Height", -1).toInt();
-    if(X == -1 || Y == -1 || Width == -1 || Height == -1){
-        showMsg("ini有误，Image/（X/Y/Width/Height）");
+    m_manuallyCutImgSwitch = m_settings->value("Image/m_manuallyCutImgSwitch", -1).toInt();
+    if(X == -1 || Y == -1 || Width == -1 || Height == -1 || m_manuallyCutImgSwitch == -1){
+        showMsg("ini有误，Image/（X/Y/Width/Height/m_manuallyCutImgSwitch）");
         X = 1000;
         Y = 0;
         Width = 1600;
         Height = 1800;
+        m_manuallyCutImgSwitch = 0;
     }else{
         if(m_MyUdpServer) {
             m_MyUdpServer->m_iniJson["Image/X"] = X;
             m_MyUdpServer->m_iniJson["Image/Y"] = Y;
             m_MyUdpServer->m_iniJson["Image/Width"] = Width;
             m_MyUdpServer->m_iniJson["Image/Height"] = Height;
+            m_MyUdpServer->m_iniJson["Image/m_manuallyCutImgSwitch）"] = m_manuallyCutImgSwitch;
         }
     }
 
-    if(fileMo) initFileMonitoring(FilePath0, FilePath1, Lagging, X, Y, Width, Height);
+    if(fileMo) initFileMonitoring(FilePath0, FilePath1, Lagging, X, Y, Width, Height, m_manuallyCutImgSwitch);
 }
 
-void MainClass::initFileMonitoring(QString filePath1, QString filePath2, int Lagging, int X, int Y, int Width, int Height)
+void MainClass::initFileMonitoring(QString filePath1, QString filePath2, int Lagging, int X, int Y, int Width, int Height, int m_manuallyCutImgSwitch)
 {
-    m_fileMonitoring = new FileMonitoring(filePath1, filePath2, Lagging, X, Y, Width, Height);
+    m_fileMonitoring = new FileMonitoring(filePath1, filePath2, Lagging, X, Y, Width, Height, m_manuallyCutImgSwitch);
     connect(m_fileMonitoring, &FileMonitoring::signalShowPic, this, [=](QString picPath){
 
         QString illegalCode;
