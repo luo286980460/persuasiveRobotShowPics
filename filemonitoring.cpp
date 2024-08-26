@@ -13,6 +13,7 @@ FileMonitoring::FileMonitoring(QString filePath1, QString filePath2, int Lagging
     connect(m_work,SIGNAL(showMsg(QString)), this, SIGNAL(showMsg(QString)));
     connect(this, &FileMonitoring::signalInitWorker, m_work, &FileMonitoringWorker::slotInitWorker);       // 初始化工作类
     connect(m_work, &FileMonitoringWorker::signalShowPic, this, &FileMonitoring::signalShowPic);       // 初始化工作类
+    connect(m_work, &FileMonitoringWorker::showMsg, this, &FileMonitoring::showMsg);       // 初始化工作类
 }
 
 FileMonitoring::~FileMonitoring()

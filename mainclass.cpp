@@ -8,16 +8,24 @@
 #include <QFile>
 #include <QDebug>
 #include <QJsonDocument>
+#include <QDateTime>
+#include <QFileSystemWatcher>
+#include <QDir>
 
 #define INI_PATH_NAME "/cfg.ini"
 
 #define DEFAULT_PROGRAME_PICNAME "2.jpg"
+#define SUCCESS_DATA_PATH "/usr/local/robot/media/"
+#define SUCCESS_DATA "successData"
+#define FAIL_DATA "failData"
+
 
 MainClass::MainClass(QObject *parent)
     : QObject{parent}
 {
     openCfg();
     initCfg();
+    initFileMonitoringSuccessDir();
 
     //if(m_BX_Y1A) m_BX_Y1A->showDefaultProgram();
 }
@@ -43,6 +51,8 @@ void MainClass::initCfg()
     int ScreenWidth;
     int ScreenHeight;
     int Screen2DefPgTime;
+    QString StartTime;
+    QString StopTime;
 
     // 监控文件的路径
     QString FilePath0;
@@ -130,12 +140,30 @@ void MainClass::initCfg()
         if(m_MyUdpServer) m_MyUdpServer->m_iniJson["Screen/Screen2DefPgTime"] = Screen2DefPgTime;
     }
 
+
+    StartTime = m_settings->value("Screen/StartTime", "-1").toString();
+    if(StartTime == "-1") {
+        showMsg("ini有误，Screen/StartTime");
+        screen = false;
+    }else{
+        if(m_MyUdpServer) m_MyUdpServer->m_iniJson["Screen/StartTime"] = Screen2DefPgTime;
+    }
+
+    StopTime = m_settings->value("Screen/StopTime", "-1").toString();
+    if(StopTime == "-1") {
+        showMsg("ini有误，Screen/StopTime");
+        screen = false;
+    }else{
+        if(m_MyUdpServer) m_MyUdpServer->m_iniJson["Screen/StopTime"] = Screen2DefPgTime;
+    }
+
     if(screen) {
-        if(ScreenType == 0){
-//            initBX_Y1A(ScreenIp, ScreenPort, ScreenWidth, ScreenHeight);
-        }else if(ScreenType == 1){
-            initNovaController(ScreenIp, Screen2DefPgTime);
-        }
+        initNovaController(ScreenIp, Screen2DefPgTime, StartTime, StopTime);
+//         if(ScreenType == 0){
+// //            initBX_Y1A(ScreenIp, ScreenPort, ScreenWidth, ScreenHeight);
+//         }else if(ScreenType == 1){
+//             initNovaController(ScreenIp, Screen2DefPgTime);
+//         }
     }
 
     // 文件监控
@@ -166,6 +194,7 @@ void MainClass::initCfg()
     Width = m_settings->value("Image/Width", -1).toInt();
     Height = m_settings->value("Image/Height", -1).toInt();
     m_manuallyCutImgSwitch = m_settings->value("Image/m_manuallyCutImgSwitch", -1).toInt();
+
     if(X == -1 || Y == -1 || Width == -1 || Height == -1 || m_manuallyCutImgSwitch == -1){
         showMsg("ini有误，Image/（X/Y/Width/Height/m_manuallyCutImgSwitch）");
         X = 1000;
@@ -189,6 +218,7 @@ void MainClass::initCfg()
 void MainClass::initFileMonitoring(QString filePath1, QString filePath2, int Lagging, int X, int Y, int Width, int Height, int m_manuallyCutImgSwitch)
 {
     m_fileMonitoring = new FileMonitoring(filePath1, filePath2, Lagging, X, Y, Width, Height, m_manuallyCutImgSwitch);
+    connect(m_fileMonitoring, &FileMonitoring::showMsg, this, &MainClass::showMsg);
     connect(m_fileMonitoring, &FileMonitoring::signalShowPic, this, [=](QString picPath){
 
         QString illegalCode;
@@ -227,18 +257,40 @@ void MainClass::initFileMonitoring(QString filePath1, QString filePath2, int Lag
         }
 
 
-        if(m_ScreenType == 0){
+        // if(m_ScreenType == 0){
 //            if(m_BX_Y1A){
 //                m_BX_Y1A->sendTextAndPic((_TEXT_CHAR*)"请安全驾驶", (_TEXT_CHAR*)(picPath.toLocal8Bit().data()));
 //            }
-        }else if(m_ScreenType == 1){
+        // }else if(m_ScreenType == 1){
             if(m_NovaController){
                 emit m_NovaController->signalShowPic(picPath, DEFAULT_PROGRAME_PICNAME, illegalType);
+                showMsg("m_NovaController->signalShowPic successfull");
+            }else{
+
+                showMsg("m_NovaController->signalShowPic failed");
             }
-        }
+        // }
 
     });
     m_fileMonitoring->start();
+}
+
+void MainClass::initFileMonitoringSuccessDir()
+{
+    // 初始化文件监控
+    m_fileMonitoringSuccess = new QFileSystemWatcher(this);
+    connect(m_fileMonitoringSuccess, SIGNAL(directoryChanged(QString)), this, SLOT(successDataError(QString)));
+
+    QDir dir1(SUCCESS_DATA_PATH);
+    if(!dir1.exists()){
+        dir1.mkpath(SUCCESS_DATA_PATH);
+        system(QString("sudo chmod -R a+rwx %1").arg(SUCCESS_DATA_PATH).toLocal8Bit());
+    }
+
+    m_fileMonitoringSuccess->addPath(SUCCESS_DATA_PATH);
+
+
+    qDebug() << "更新监控路径：" << SUCCESS_DATA_PATH;
 }
 
 //void MainClass::initBX_Y1A(QString ScreenIp, int ScreenPort, int ScreenWidth, int ScreenHeight)
@@ -255,9 +307,10 @@ void MainClass::initMyUdpServer(int port)
     connect(m_MyUdpServer, &MyUdpServer::signalUpdateIni, this, &MainClass::slotUpdateIni);
 }
 
-void MainClass::initNovaController(QString ScreenIp, int Back2DefaultProgram)
+void MainClass::initNovaController(QString ScreenIp, int Back2DefaultProgram, QString startTime, QString stopTime)
 {
-    m_NovaController = new NovaController(ScreenIp, Back2DefaultProgram);
+    m_NovaController = new NovaController(ScreenIp, Back2DefaultProgram, startTime, stopTime);
+    connect(m_NovaController, &NovaController::showMsg, this, &MainClass::showMsg);
     m_NovaController->start();
 }
 
@@ -275,7 +328,12 @@ void MainClass::setIni(QString key, int value)
 
 void MainClass::showMsg(QString msg)
 {
-    qDebug() << msg;
+    //qDebug() << msg;
+    QString path = QCoreApplication::applicationDirPath() + "/picLog/" + QDateTime::currentDateTime().toString("yyyyMMdd/1.log");
+    QFile file(path);
+    file.open(QIODevice::Append);
+    file.write(QString("\n" + QDateTime::currentDateTime().toString("yyyyMMdd hh:mm:ss  ") + msg).toLocal8Bit());
+    file.close();
 }
 
 void MainClass::slotSetIni(QString key, QString value)
@@ -304,3 +362,24 @@ void MainClass::slotUpdateIni()
 //    }
     initCfg();
 }
+
+void MainClass::successDataError(QString fileName)
+{
+    QDir dir(fileName);
+
+    //提取文件夹信息链表
+    QFileInfoList inforList = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
+
+    int i = 0;
+    //遍历文件信息链表,并进行相关操作
+    foreach (QFileInfo info, inforList) {
+        QString fileName = info.fileName();
+
+        if(fileName == SUCCESS_DATA) i++;
+        if(fileName == FAIL_DATA) i++;
+    }
+    if(i != 2){
+        slotUpdateIni();
+    }
+}
+

@@ -33,6 +33,8 @@ void MyUdpServer::initIniJson()
     m_iniJson.insert("Screen/ScreenWidth", "");
     m_iniJson.insert("Screen/ScreenHeight", "");
     m_iniJson.insert("Screen/ScreenLogPath", "");
+    m_iniJson.insert("Screen/StartTime", "");
+    m_iniJson.insert("Screen/StopTime", "");
     m_iniJson.insert("FileMonitoring/FilePath01", "");
     m_iniJson.insert("FileMonitoring/FilePath02", "");
     m_iniJson.insert("UdpServer/Port", "");
@@ -63,6 +65,12 @@ void MyUdpServer::setIni(QJsonObject& json)
     if(json.contains("Screen/Screen2DefPgTime") && json.value("Screen/Screen2DefPgTime").isDouble()){
         emit signalSetIni("Screen/Screen2DefPgTime", json.value("Screen/Screen2DefPgTime").toInt());
     }
+    if(json.contains("Screen/StartTime") && json.value("Screen/StartTime").isString()){
+        emit signalSetIni("Screen/StartTime", json.value("Screen/StartTime").toString());
+    }
+    if(json.contains("Screen/StopTime") && json.value("Screen/StopTime").isString()){
+        emit signalSetIni("Screen/StopTime", json.value("Screen/StopTime").toString());
+    }
     if(json.contains("FileMonitoring/FilePath01") && json.value("FileMonitoring/FilePath01").isString()){
         emit signalSetIni("FileMonitoring/FilePath01", json.value("FileMonitoring/FilePath01").toString());
     }
@@ -84,6 +92,7 @@ void MyUdpServer::setIni(QJsonObject& json)
     if(json.contains("Image/m_manuallyCutImgSwitch") && json.value("Image/m_manuallyCutImgSwitch").isDouble()){
         emit signalSetIni("Image/m_manuallyCutImgSwitch", json.value("Image/m_manuallyCutImgSwitch").toInt());
     }
+
     emit signalUpdateIni();
 }
 

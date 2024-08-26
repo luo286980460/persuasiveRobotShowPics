@@ -33,6 +33,7 @@ class FileMonitoring;
 class BX_Y1A;
 class MyUdpServer;
 class NovaController;
+class QFileSystemWatcher;
 
 class MainClass : public QObject
 {
@@ -46,10 +47,11 @@ private:
     void initFileMonitoring(QString filePath, QString filePath2,    //  初始化文件监控
                             int Lagging, int X, int Y, int Width,
                             int Height, int m_manuallyCutImgSwitch);
-//    void initBX_Y1A(QString ScreenIp, int ScreenPort,               //  初始化仰邦控制器
+    void initFileMonitoringSuccessDir();                            // 架空successData是否被删除
+//    void initBX_Y1A(QString ScreenIp, int ScreenPort,             //  初始化仰邦控制器
 //                    int ScreenWidth, int ScreenHeight);
     void initMyUdpServer(int port);
-    void initNovaController(QString ScreenIp, int Back2DefaultProgram);                                      //  初始化诺瓦控制器
+    void initNovaController(QString ScreenIp, int Back2DefaultProgram, QString startTime, QString stopTime);                                      //  初始化诺瓦控制器
     void setIni(QString key, QString value);
     void setIni(QString key, int value);
 
@@ -60,14 +62,16 @@ public slots:
     void slotSetIni(QString key, QString value);
     void slotSetIni(QString key, int value);
     void slotUpdateIni();
+    void successDataError(QString fileName);
 
 private:
     FileMonitoring* m_fileMonitoring = nullptr;     // 文件监控
-//    BX_Y1A* m_BX_Y1A = nullptr;                     // 仰邦控制器
+//    BX_Y1A* m_BX_Y1A = nullptr;                   // 仰邦控制器
     MyUdpServer* m_MyUdpServer = nullptr;           // udp服务
     QSettings* m_settings = nullptr;
     NovaController* m_NovaController = nullptr;     // 诺瓦控制器
     int m_ScreenType;                               // 屏幕类型
+    QFileSystemWatcher* m_fileMonitoringSuccess;    // 监控successData文件夹
 };
 
 #endif // MAINCLASS_H

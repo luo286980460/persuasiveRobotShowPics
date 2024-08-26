@@ -1,10 +1,10 @@
 #include "novacontroller.h"
 #include "novacontrollerworker.h"
 
-NovaController::NovaController(QString ip, int Back2DefaultProgram, QObject *parent)
+NovaController::NovaController(QString ip, int Back2DefaultProgram, QString startTime, QString stopTime, QObject *parent)
     : QObject{parent}
 {
-    m_work = new NovaControllerWorker(ip, Back2DefaultProgram);
+    m_work = new NovaControllerWorker(ip, Back2DefaultProgram, startTime, stopTime);
     m_work->moveToThread(&m_workerThread);
     connect(&m_workerThread, &QThread::finished, m_work, &QObject::deleteLater);
 

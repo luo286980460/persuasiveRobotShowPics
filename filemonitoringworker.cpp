@@ -30,7 +30,7 @@ FileMonitoringWorker::FileMonitoringWorker(QString filePath1, QString filePath2,
     QDir dir(m_picLogPath);
     if(!dir.exists()){
         dir.mkpath(m_picLogPath);
-        system(QString("chmod -R a+rwx %1").arg(m_picLogPath).toLocal8Bit());
+        system(QString("sudo chmod -R a+rwx %1").arg(m_picLogPath).toLocal8Bit());
     }
 }
 
@@ -51,13 +51,13 @@ void FileMonitoringWorker::initFileMonitoring()
     QDir dir1(m_filePath1);
     if(!dir1.exists()){
         dir1.mkpath(m_filePath1);
-        system(QString("chmod -R a+rwx %1").arg(m_filePath1).toLocal8Bit());
+        system(QString("sudo chmod -R a+rwx %1").arg(m_filePath1).toLocal8Bit());
     }
 
     QDir dir2(m_filePath2);
     if(!dir2.exists()){
         dir2.mkpath(m_filePath2);
-        system(QString("chmod -R a+rwx %1").arg(m_filePath2).toLocal8Bit());
+        system(QString("sudo chmod -R a+rwx %1").arg(m_filePath2).toLocal8Bit());
     }
 
     m_fileMonitoring->addPath(m_filePath1);
@@ -122,11 +122,13 @@ QFileInfo FileMonitoringWorker::getNewer(QFileInfo *file1, QFileInfo *file2)
     if(dateTime1 > dateTime2){
         fJson2.remove();
         qDebug() << "删除文件： " << file2->filePath();
+        showMsg("删除文件： " + file2->filePath());
         return *file1;
     }
     else{
         fJson1.remove();
         qDebug() << "删除文件： " << file1->filePath();
+        showMsg("删除文件： " + file1->filePath());
         return *file2;
     }
 }
@@ -201,21 +203,33 @@ QString FileMonitoringWorker::cutPicFromJson(QString filePath, QString illgCode)
     imgData = QByteArray::fromBase64(jsonObj.value("zpstr1").toString().split(",",QString::SkipEmptyParts).last().toLocal8Bit());
     image.loadFromData(imgData, "JPG");
 
-    //cutValeList = jsonObj.value("clwz").toString().split(",",QString::SkipEmptyParts);
     //image1 = image.scaledToHeight(310);
-    if(jsonObj.value("clwz").isString() && cutValeList.size() == 4  && !m_manuallyCutImgSwitch){
-        cutX = cutValeList.at(0).toInt();
-        cutY = cutValeList.at(1).toInt();
-        cutWidth = cutValeList.at(2).toInt();
-        cutHeight = cutValeList.at(3).toInt();
-        image = image.copy(cutX, cutY, cutWidth, cutHeight);
+
+    if(jsonObj.value("clwz").isString() && !m_manuallyCutImgSwitch){
+        cutValeList = jsonObj.value("clwz").toString().split(",",QString::SkipEmptyParts);
+
+        if(cutValeList.size() == 4 ){
+            cutX = cutValeList.at(0).toInt();
+            cutY = cutValeList.at(1).toInt();
+            cutWidth = cutValeList.at(2).toInt();
+            cutHeight = cutValeList.at(3).toInt();
+            image = image.copy(cutX, cutY, cutWidth, cutHeight);
+            qDebug() << QString("自动抠图：【%1】【%2】【%3】【%4】").arg(cutX).arg(cutY).arg(cutWidth).arg(cutHeight);
+        }else{
+            image = image.copy(m_imgX, m_imgY, m_imgWidth, m_imgHeight);
+            image = image.scaledToHeight(image.height()/2);
+            qDebug() << QString("手动抠图：【%1】【%2】【%3】【%4】").arg(m_imgX).arg(m_imgY).arg(m_imgWidth).arg(m_imgHeight);
+            if(!image.isNull()){
+                image = image.scaledToHeight(image.height()/2);
+            }
+        }
     }else{
         image = image.copy(m_imgX, m_imgY, m_imgWidth, m_imgHeight);
         image = image.scaledToHeight(image.height()/2);
-    }
-
-    if(!image.isNull()){
-        image = image.scaledToHeight(image.height()/2);
+        qDebug() << QString("手动抠图：【%1】【%2】【%3】【%4】").arg(m_imgX).arg(m_imgY).arg(m_imgWidth).arg(m_imgHeight);
+        if(!image.isNull()){
+            image = image.scaledToHeight(image.height()/2);
+        }
     }
 
     image.save(savePath);
@@ -241,6 +255,7 @@ void FileMonitoringWorker::deleteBackUp()
             QDir _dir;
             _dir.setPath(info.filePath());
             _dir.removeRecursively();
+            showMsg("删除文件： " + _dir.path());
         }
     }
 
@@ -250,12 +265,14 @@ void FileMonitoringWorker::slotInitWorker()
 {
     updatePath();
 
-    system("chmod -R a+rwx /home");
+    system("sudo chmod -R a+rwx /home");
     deleteBackUp();
 }
 
 void FileMonitoringWorker::dealPicFiles(QString fileName)
 {
+    emit showMsg(QString("\n" + QDateTime::currentDateTime().toString("yyyyMMdd hh:mm:ss  有新文件： ") + fileName));
+
     QString illgCode;   // 违法代码
     // 读取json源文件
     QDir dir(fileName);
@@ -287,6 +304,7 @@ void FileMonitoringWorker::dealPicFiles(QString fileName)
 
             QFile _file(filePath);
             _file.remove();
+            showMsg("删除文件： " + _file.fileName());
             continue;
         }
 
@@ -312,6 +330,7 @@ void FileMonitoringWorker::dealPicFiles(QString fileName)
     /* 删除原图 */
     if(!oldName.isEmpty()) {
         QFile::remove(oldName);
+        showMsg("删除文件： " + oldName);
     }
 
 

@@ -10,7 +10,7 @@ class NovaController : public QObject
 {
     Q_OBJECT
 public:
-    explicit NovaController(QString ip, int Back2DefaultProgram, QObject *parent = nullptr);
+    explicit NovaController(QString ip, int Back2DefaultProgram, QString startTime, QString stopTime, QObject *parent = nullptr);
     ~NovaController();
 
     void start();

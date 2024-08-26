@@ -56,6 +56,6 @@ private:
         ;
     int m_imgHeight                         // 照片截图高度
         ;
-    int m_backSaveDays = 3;                 // 备份文件保存时间
+    int m_backSaveDays = 1;                 // 备份文件保存时间
 };
 #endif // FILEMONITORINGWORKER_H

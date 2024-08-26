@@ -9,14 +9,26 @@
 
 #define DEFAULT_PROGRAME_PICNAME "1.jpg"
 
-NovaControllerWorker::NovaControllerWorker(QString ip, int Back2DefaultProgram, QObject *parent)
+NovaControllerWorker::NovaControllerWorker(QString ip, int Back2DefaultProgram, QString startTime, QString stopTime, QObject *parent)
     : QObject{parent}
     , m_ip(ip)
     , m_port(5000)
     , m_Back2DefaultProgramTime(Back2DefaultProgram)
     , m_Back2DefaultProgramTimeFlag(Back2DefaultProgram)
+    , m_startTime(QTime::fromString("08:00:00", "hh:mm:ss"))
+    , m_stopTime(QTime::fromString("20:00:00", "hh:mm:ss"))
 {
-
+    QTime startTimeTmp = QTime::fromString(startTime, "hh:mm:ss");
+    QTime stopTimeTmp = QTime::fromString(stopTime, "hh:mm:ss");
+    if(startTimeTmp.isValid() && stopTimeTmp.isValid() && startTimeTmp < stopTimeTmp){
+        m_startTime = startTimeTmp;
+        m_stopTime = stopTimeTmp;
+        showMsg(QString("工作时间【%1】~【%2】").arg(startTime).arg(stopTime));
+    }else{
+        m_startTime = QTime::fromString("08:00:00", "hh:mm:ss");
+        m_stopTime = QTime::fromString("20:00:00", "hh:mm:ss");
+        showMsg("时间格式错误，启用默认时间");
+    }
 }
 
 void NovaControllerWorker::playProgram(int id)
@@ -25,7 +37,7 @@ void NovaControllerWorker::playProgram(int id)
     qDebug() << "playProgram";
     if(m_traffic && m_timer){
 
-        emit showMsg(QString("播放节目 %1 ").arg(id));
+        //emit showMsg(QString("播放节目 %1 ").arg(id));
 
         switch (id) {
         case 1:
@@ -102,12 +114,22 @@ void NovaControllerWorker::playProgramDefault(QString picPathName, QString picNa
 {
     // 下发文件
     int res = m_traffic->sendFile(picPathName.toLocal8Bit(), picName.toLocal8Bit());
-    qDebug() << "下发文件 res ： " << res;
+    //qDebug() << QString("下发文件 res ： %1").arg(res);
+    //showMsg(QString("下发文件 res ： %1").arg(res));
     // 发送节目
     QString cmd = PROGRAM1;
     cmd = cmd.arg(text).arg(picName);
     res = m_traffic->sendPlayList(1, cmd.toLocal8Bit().data());
-    qDebug() << "下发节目 res ： " << res;
+    //showMsg(QString("下发节目 res ： %1").arg(res));
+}
+
+bool NovaControllerWorker::getScreenWoringState()
+{
+    QTime curTime = QTime::currentTime();
+    if(curTime >= m_startTime && curTime <= m_stopTime){
+        return true;
+    }
+    return false;
 }
 
 void NovaControllerWorker::slotInit()
@@ -155,6 +177,10 @@ void NovaControllerWorker::slotIllegalAct()
 
 void NovaControllerWorker::slotShowPic(QString picPathName, QString picName, QString text)
 {
-    playProgramDefault(picPathName, picName, text);
+    if(getScreenWoringState()){
+        playProgramDefault(QApplication::applicationDirPath() + "/" + DEFAULT_PROGRAME_PICNAME, picName, text);
+    }else{
+        slotShowPic(picPathName, picName, text);
+    }
     m_Back2DefaultProgramTimeFlag = 0;
 }
