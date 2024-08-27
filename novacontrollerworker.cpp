@@ -178,9 +178,9 @@ void NovaControllerWorker::slotIllegalAct()
 void NovaControllerWorker::slotShowPic(QString picPathName, QString picName, QString text)
 {
     if(getScreenWoringState()){
-        playProgramDefault(QApplication::applicationDirPath() + "/" + DEFAULT_PROGRAME_PICNAME, picName, text);
+        playProgramDefault(picPathName, picName, text);
     }else{
-        slotShowPic(picPathName, picName, text);
+        playProgramDefault(QApplication::applicationDirPath() + "/" + DEFAULT_PROGRAME_PICNAME, picName, text);
     }
     m_Back2DefaultProgramTimeFlag = 0;
 }
